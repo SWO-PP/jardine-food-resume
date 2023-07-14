@@ -1,0 +1,215 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+	<title>Jardine Food 履歷表</title>
+</head>
+
+<body>
+	<div class="antialiased text-gray-900 px-6">
+		<div class="max-w-xl mx-auto py-12 md:max-w-full">
+			<div class="flex flex-col-reverse md:flex-row justify-between">
+				<div>
+					<h2 class="text-2xl font-bold">Jardine Food 履歷表</h2>
+					<p class="mt-2 text-lg text-gray-500">
+						Jardine Restaurant Group Taiwan
+					</p>
+				</div>
+				<p class="text-md font-bold" id="Today"></p>
+			</div>
+
+			<div class="mt-8 grid grid-cols-1 items-start">
+				<!-- 0. 應徵職位 -->
+				<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+					<label class="block">
+						<span class="text-gray-700">應徵職位</span>
+						<input type="text" id="Shop_ID"
+							class="form-input mt-1 block w-full rounded-md bg-gray-400 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 disabled:opacity-50"
+							disabled>
+					</label>
+				</div>
+				<!-- 1. 基本資料 -->
+				<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+					<label class="block">
+						<span class="text-gray-700"><span class="text-red-500 mr-1">*</span>Chinese Name
+							中文姓名</span>
+						<input type="text" id="Name_Zh"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+						<span class="-bottom-6 text-red-500" id="Name_Zh_Error"></span>
+					</label>
+					<label class="block">
+						<span class="text-gray-700"><span class="text-red-500 mr-1">*</span>English Name 英文姓名</span>
+						<input type="text" id="Name_En"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+						<span class="-bottom-6 text-red-500" id="Name_En_Error"></span>
+					</label>
+					<label class="block">
+						<span class="text-gray-700"><span class="text-red-500 mr-1">*</span>Birth Date 出生日期</span>
+						<input type="date" id="Birth_Date"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+						<span class="-bottom-6 text-red-500" id="Birth_Date_Error"></span>
+					</label>
+					<label class="block">
+						<span class="text-gray-700"><span class="text-red-500 mr-1">*</span>Gender 生理性別</span>
+						<select id="Gender"
+							class="form-select block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 mt-1">
+							<option value="Male" selected>Male 男</option>
+							<option value="Female">Female 女</option>
+						</select>
+					</label>
+					<label class="block">
+						<span class="text-gray-700">Nationality 國籍</span>
+						<input type="text"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+					</label>
+				</div>
+				<!-- 2. 外籍人士 -->
+				<h4 class="text-lg font-bold mb-2">外籍人士</h4>
+				<div
+					class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-start border border-gray-300 rounded-md p-6 mb-6">
+					<label class="block">
+						<span class="text-gray-700">居留證字號</span>
+						<input type="text"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+					</label>
+					<label class="block">
+						<span class="text-gray-700">有效日期</span>
+						<input type="date"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+					</label>
+					<label class="block">
+						<span class="text-gray-700">工作許可字號</span>
+						<input type="text"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+					</label>
+					<label class="block">
+						<span class="text-gray-700">有效日期</span>
+						<input type="date"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+					</label>
+				</div>
+				<!-- 3. 基本資料 -->
+				<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+					<label class="block">
+						<span class="text-gray-700">Height 身高</span>
+						<input type="text"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+							placeholder="cm/公分">
+					</label>
+					<label class="block">
+						<span class="text-gray-700">Weight 體重</span>
+						<input type="text"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+							placeholder="kg/公斤">
+					</label>
+					<label class="block">
+						<span class="text-gray-700"><span class="text-red-500 mr-1">*</span>Email 電子信箱</span>
+						<input type="email" id="Email"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+						<span class="-bottom-6 text-red-500" id="Email_Error"></span>
+					</label>
+					<label class="block">
+						<span class="text-gray-700">Mobile Phone 行動電話</span>
+						<input type="text"
+							class="form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+					</label>
+					<label class="block">
+						<span class="text-gray-700">Avatar 大頭照</span>
+						<input type="file" accept="image/*" class="mt-1 block w-full" id="Avatar">
+					</label>
+					<label class="block">
+						<span class="text-gray-700">Attachment 附件</span>
+						<input type="file" class="mt-1 block w-full" id="Attachment">
+					</label>
+				</div>
+				<!-- 4. 駕照 -->
+				<div class="grid grid-cols-1 gap-6 mb-6">
+					<fieldset class="block">
+						<legend class="text-gray-700">License 駕照</legend>
+						<div class="flex flex-col md:flex-row gap-6 mt-2">
+							<div>
+								<label class="inline-flex items-center">
+									<input type="checkbox"
+										class="rounded bg-gray-200 border-transparent focus:border-transparent focus:bg-gray-200 text-gray-700 focus:ring-1 focus:ring-offset-2 focus:ring-gray-500">
+									<span class="ml-2">Car 汽車</span>
+								</label>
+							</div>
+							<div>
+								<label class="inline-flex items-center">
+									<input type="checkbox"
+										class="rounded bg-gray-200 border-transparent focus:border-transparent focus:bg-gray-200 text-gray-700 focus:ring-1 focus:ring-offset-2 focus:ring-gray-500">
+									<span class="ml-2">Motor 機車（普通重型）</span>
+								</label>
+							</div>
+							<div>
+								<label class="inline-flex items-center">
+									<input type="checkbox"
+										class="rounded bg-gray-200 border-transparent focus:border-transparent focus:bg-gray-200 text-gray-700 focus:ring-1 focus:ring-offset-2 focus:ring-gray-500">
+									<span class="ml-2">Motor 機車（輕型）</span>
+								</label>
+							</div>
+							<div>
+								<label class="inline-flex items-center">
+									<input type="checkbox"
+										class="rounded bg-gray-200 border-transparent focus:border-transparent focus:bg-gray-200 text-gray-700 focus:ring-1 focus:ring-offset-2 focus:ring-gray-500">
+									<span class="ml-2">無</span>
+								</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<!-- 5. 工作經歷 -->
+				<h4 class="text-lg font-bold mb-2">工作經歷</h4>
+				<div class="grid grid-cols-1 gap-6 items-start border border-gray-300 rounded-md p-6 mb-6"
+					id="Employment_Container">
+					<div class="flex flex-col md:flex-row items-stretch gap-6" id="Employment_1">
+						<span class="bg-gray-200 leading-none rounded p-2 md:mb-1.5 md:mt-8 self-start">1</span>
+						<label class="block flex-1">
+							<span class="text-gray-700">開始任職</span>
+							<input type="date"
+								class="From_Date form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+							<span class="From_Date_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="block flex-1">
+							<span class="text-gray-700">結束任職</span>
+							<input type="date"
+								class="To_Date form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+							<span class="To_Date_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="block flex-1">
+							<span class="text-gray-700">公司名稱</span>
+							<input type="text"
+								class="Company form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+							<span class="Company_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="block flex-1">
+							<span class="text-gray-700">工作職稱</span>
+							<input type="text"
+								class="Title form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+							<span class="Title_Error -bottom-6 text-red-500"></span>
+						</label>
+						<svg data-id="1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+							stroke-width="1.5" stroke="currentColor" class="remove-job-btn w-6 h-6 stroke-2 md:mt-9">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</div>
+					<button class="w-full rounded-md bg-gray-200 hover:bg-gray-400 p-2" id="add-job-btn">新增工作經歷</button>
+				</div>
+				<!-- 6.送出 -->
+				<button class="mx-auto w-32 rounded-md text-white bg-gray-700 hover:bg-gray-500 p-2" type="button"
+					id="submit-btn">送出</button>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+	<script src="./index.js"></script>
+</body>
+
+</html>
