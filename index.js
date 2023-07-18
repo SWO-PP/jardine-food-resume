@@ -1,4 +1,229 @@
+const lngs = {
+	en: { nativeName: 'English' },
+	zh: { nativeName: 'Chinese' },
+};
+
+const rerender = () => {
+	$('body').localize();
+	$('input[name=Chinese_Name]').attr('placeholder', $.t('basic-information.chinese-name.placeholder'));
+	$('input[name=English_Name]').attr('placeholder', $.t('basic-information.english-name.placeholder'));
+	$('input[name=Nationality_Other]').attr('placeholder', $.t('basic-information.nationality.placeholder'));
+	$('input[name=Personal_ID]').attr('placeholder', $.t('basic-information.personal-id.placeholder'));
+	$('input[name=Height]').attr('placeholder', $.t('basic-information.height.placeholder'));
+	$('input[name=Weight]').attr('placeholder', $.t('basic-information.weight.placeholder'));
+	$('input[name=Email]').attr('placeholder', $.t('basic-information.email.placeholder'));
+	$('input[name=Mobile_Phone]').attr('placeholder', $.t('basic-information.mobile-phone.placeholder'));
+	$('input[name=Contact_Address]').attr('placeholder', $.t('basic-information.contact-address.placeholder'));
+	$('input[name=Residence_Address]').attr('placeholder', $.t('basic-information.residence-address.placeholder'));
+};
+
 $(document).ready(function () {
+	// metadata - favicon
+	let link = document.querySelector("link[rel~='icon']");
+	if (!link) {
+		link = document.createElement('link');
+		link.rel = 'icon';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	}
+	link.href = '/favicon.ico';
+	// metadata - title
+	document.title = 'Jardine Food 履歷表';
+
+	// langauge
+	i18next.use(i18nextBrowserLanguageDetector).init(
+		{
+			debug: true,
+			fallbackLng: 'en',
+			resources: {
+				en: {
+					translation: {
+						title: 'Jardine Food Resume',
+						'basic-information': {
+							heading: 'Basic Information',
+							position: {
+								title: 'Position',
+								placeholder: 'Please select',
+								'option-1': 'Full Time',
+								'option-2': 'Part Time',
+							},
+							avatar: {
+								title: 'Avatar',
+							},
+							'chinese-name': {
+								title: 'Chinese Name',
+								placeholder: 'Please enter your Chinese name',
+							},
+							'english-name': {
+								title: 'English Name',
+								placeholder: 'Please enter your English name',
+							},
+							birthday: {
+								title: 'Birthday',
+							},
+							gender: {
+								title: 'Gender',
+								placeholder: 'Please select',
+								'option-1': 'Male',
+								'option-2': 'Female',
+								'option-3': 'Other',
+							},
+							nationality: {
+								title: 'Nationality',
+								placeholder: 'Please enter your nationality',
+								'option-1': 'R.O.C',
+								'option-2': 'Other',
+							},
+							'personal-id': {
+								title: 'Personal ID',
+								placeholder: 'Please enter your personal ID',
+							},
+							height: {
+								title: 'Height (cm)',
+								placeholder: 'Please enter your height',
+							},
+							weight: {
+								title: 'Weight (kg)',
+								placeholder: 'Please enter your weight',
+							},
+							email: {
+								title: 'Email',
+								placeholder: 'Please enter your email',
+							},
+							'mobile-phone': {
+								title: 'Mobile Phone',
+								placeholder: 'Please enter your mobile phone',
+							},
+							'contact-address': {
+								title: 'Contact Address',
+								placeholder: 'Please enter your contact address',
+							},
+							'residence-address': {
+								title: 'Residence Address',
+								placeholder: 'Please enter your residence address',
+								same: 'Same as contact address',
+							},
+							'driving-license': {
+								title: 'Driving License',
+								'option-1': 'None',
+								'option-2': 'Automobile',
+								'option-3': 'Heavy-Duty of Motorcycle',
+								'option-4': 'Light-Duty of Motorcycle',
+							},
+							'recruiting-source': {
+								title: 'Recruiting Source',
+								'option-1': 'Official Website',
+								'option-2': 'Employment Agency',
+								'option-3': 'Store Poster',
+								'option-4': 'Referral',
+								'option-5': 'Headhunting',
+							},
+						},
+					},
+				},
+				zh: {
+					translation: {
+						title: 'Jardine Food 履歷表',
+						'basic-information': {
+							heading: '基本資訊',
+							position: {
+								title: '應徵職位',
+								placeholder: '請選擇',
+								'option-1': '全職',
+								'option-2': '兼職',
+							},
+							avatar: {
+								title: '大頭照',
+							},
+							'chinese-name': {
+								title: '中文姓名',
+								placeholder: '請輸入中文姓名',
+							},
+							'english-name': {
+								title: '英文姓名',
+								placeholder: '請輸入英文姓名',
+							},
+							birthday: {
+								title: '出生日期',
+							},
+							gender: {
+								title: '性別',
+								placeholder: '請選擇',
+								'option-1': '男',
+								'option-2': '女',
+								'option-3': '其他',
+							},
+							nationality: {
+								title: '國籍',
+								placeholder: '請輸入國籍',
+								'option-1': '中華民國',
+								'option-2': '其他',
+							},
+							'personal-id': {
+								title: '國民身份證字號',
+								placeholder: '請輸入身份證字號',
+							},
+							height: {
+								title: '身高（公分）',
+								placeholder: '請輸入身高',
+							},
+							weight: {
+								title: '體重（公斤）',
+								placeholder: '請輸入體重',
+							},
+							email: {
+								title: '電子郵件',
+								placeholder: '請輸入電子郵件',
+							},
+							'mobile-phone': {
+								title: '行動電話',
+								placeholder: '請輸入行動電話',
+							},
+							'contact-address': {
+								title: '通訊地址',
+								placeholder: '請輸入通訊地址',
+							},
+							'residence-address': {
+								title: '戶籍地址',
+								placeholder: '請輸入戶籍地址',
+								same: '同通訊地址',
+							},
+							'driving-license': {
+								title: '駕照',
+								'option-1': '無',
+								'option-2': '汽車',
+								'option-3': '普通重型機車',
+								'option-4': '普通輕型機車',
+							},
+							'recruiting-source': {
+								title: '招募訊息來源',
+								'option-1': '官網',
+								'option-2': '人力銀行',
+								'option-3': '店家海報',
+								'option-4': '親友介紹',
+								'option-5': '獵人頭',
+							},
+						},
+					},
+				},
+			},
+		},
+		(err, t) => {
+			if (err) return console.error(err);
+
+			jqueryI18next.init(i18next, $, { useOptionsAttr: true });
+
+			$('.lang-btn').click(() => {
+				const chosenLng = i18next.resolvedLanguage === 'en' ? 'zh' : 'en';
+				i18next.changeLanguage(chosenLng, () => {
+					rerender();
+				});
+			});
+
+			rerender();
+		}
+	);
+
+	// Query auto fill in
 	const getQueryVariable = variable => {
 		let query = window.location.search.substring(1);
 		let vars = query.split('&');
@@ -10,7 +235,6 @@ $(document).ready(function () {
 		}
 	};
 
-	// Query auto fill in
 	const Shop_ID = getQueryVariable('shop_id');
 	$('#Shop_ID').val(Shop_ID);
 	$('#Today').html(dayjs().format('YYYY/MM/DD'));
@@ -20,7 +244,7 @@ $(document).ready(function () {
 		Name_Zh: { value: '', valid: true, error: '' },
 		Name_En: { value: '', valid: true, error: '' },
 		Birth_Date: { value: '', valid: true, error: '' },
-		Gender: { value: 'Male', valid: true, error: '' },
+		Gender: { value: '', valid: true, error: '' },
 		Email: { value: '', valid: true, error: '' },
 		Employment: [
 			{
