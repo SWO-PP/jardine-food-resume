@@ -289,8 +289,8 @@
 				</div>
 				<div class="grid grid-cols-1 items-start p-8 gap-8">
 					<div class="grid grid-cols-1 gap-8 items-start" id="Educational_Level_Container">
-						<div class="flex items-center gap-8" id="Educational_Level_1">
-							<div class="flex-1 grid grid-cols-10 gap-x-8 gap-y-4 pb-8 border-b border-light-gray">
+						<div class="flex items-center gap-8 border-b border-light-gray" id="Educational_Level_1">
+							<div class="flex-1 grid grid-cols-10 gap-x-8 gap-y-4 pb-8">
 								<label class="flex flex-col gap-2 col-span-2">
 									<div class="flex">
 										<span class="text-dark-gray text-base"
@@ -362,6 +362,66 @@
 						<button
 							class="w-full rounded-md bg-gray-white hover:bg-light-gray text-dark-gray p-2 transition"
 							id="add-educational-level-btn" data-i18n="educational-level.button"></button>
+					</div>
+				</div>
+			</section>
+			<!-- Job Experience -->
+			<section class="section-wrapper flex flex-col bg-white rounded">
+				<div class="rounded-t bg-jardine-red px-6 py-3">
+					<p class="text-base font-bold text-white" data-i18n="job-experience.heading"></p>
+				</div>
+				<div class="grid grid-cols-1 items-start p-8 gap-8">
+					<div class="grid grid-cols-1 gap-8 items-start" id="Job_Experience_Container">
+						<div class="flex items-center gap-8 border-b border-light-gray" id="Job_Experience_1">
+							<div class="flex-1 grid grid-cols-2 gap-x-8 gap-y-4 pb-8">
+								<label class="flex flex-col gap-2 col-span-1">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="job-experience.position.title"></span>
+									</div>
+									<input type="text"
+										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										id=Job_Experience_Position" name="Job_Experience_Position">
+									<span class="Job_Experience_Position_Error -bottom-6 text-red-500"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-1">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="job-experience.company-name.title"></span>
+									</div>
+									<input type="text"
+										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										id=Job_Experience_Company_Name" name="Job_Experience_Company_Name">
+									<span class="Job_Experience_Company_Name_Error -bottom-6 text-red-500"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-1">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="job-experience.start-date.title"></span>
+									</div>
+									<input type="date"
+										class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
+										id="Job_Experience_Start_Date">
+								</label>
+								<label class="flex flex-col gap-2 col-span-1">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="job-experience.end-date.title"></span>
+									</div>
+									<input type="date"
+										class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
+										id="Job_Experience_End_Date">
+								</label>
+							</div>
+							<svg data-id="1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+								stroke-width="1.5" stroke="currentColor"
+								class="remove-job-experience-btn w-6 h-6 stroke-2 cursor-pointer">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+							</svg>
+						</div>
+						<button
+							class="w-full rounded-md bg-gray-white hover:bg-light-gray text-dark-gray p-2 transition"
+							id="add-job-experience-btn" data-i18n="job-experience.button"></button>
 					</div>
 				</div>
 			</section>

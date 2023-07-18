@@ -23,6 +23,8 @@ const rerender = () => {
 		'placeholder',
 		$.t('educational-level.major-subject.placeholder')
 	);
+	$('input[name=Job_Experience_Position]').attr('placeholder', $.t('job-experience.position.placeholder'));
+	$('input[name=Job_Experience_Company_Name]').attr('placeholder', $.t('job-experience.company-name.placeholder'));
 };
 
 $(document).ready(function () {
@@ -153,6 +155,24 @@ $(document).ready(function () {
 							},
 							button: 'Add Educational Level',
 						},
+						'job-experience': {
+							heading: 'Job Experience',
+							position: {
+								title: 'Job Position',
+								placeholder: 'Please enter your job position',
+							},
+							'company-name': {
+								title: 'Company Name',
+								placeholder: 'Please enter your company name',
+							},
+							'start-date': {
+								title: 'Start Date',
+							},
+							'end-date': {
+								title: 'End Date',
+							},
+							button: 'Add Job Experience',
+						},
 					},
 				},
 				zh: {
@@ -264,6 +284,24 @@ $(document).ready(function () {
 								title: '結束日期',
 							},
 							button: '新增教育程度',
+						},
+						'job-experience': {
+							heading: '工作經歷',
+							position: {
+								title: '工作職稱',
+								placeholder: '請輸入工作職稱',
+							},
+							'company-name': {
+								title: '公司名稱',
+								placeholder: '請輸入公司名稱',
+							},
+							'start-date': {
+								title: '開始日期',
+							},
+							'end-date': {
+								title: '結束日期',
+							},
+							button: '新增工作經歷',
 						},
 					},
 				},
