@@ -15,6 +15,14 @@ const rerender = () => {
 	$('input[name=Mobile_Phone]').attr('placeholder', $.t('basic-information.mobile-phone.placeholder'));
 	$('input[name=Contact_Address]').attr('placeholder', $.t('basic-information.contact-address.placeholder'));
 	$('input[name=Residence_Address]').attr('placeholder', $.t('basic-information.residence-address.placeholder'));
+	$('input[name=Educational_Level_School_Name]').attr(
+		'placeholder',
+		$.t('educational-level.school-name.placeholder')
+	);
+	$('input[name=Educational_Level_Major_Subject]').attr(
+		'placeholder',
+		$.t('educational-level.major-subject.placeholder')
+	);
 };
 
 $(document).ready(function () {
@@ -118,6 +126,33 @@ $(document).ready(function () {
 								'option-5': 'Headhunting',
 							},
 						},
+						'educational-level': {
+							heading: 'Educational Level',
+							level: {
+								title: 'Educational Stage',
+								placeholder: 'Please select',
+								'option-1': 'Elementary School',
+								'option-2': 'Junior High School',
+								'option-3': 'Senior High School',
+								'option-4': 'College / University',
+								'option-5': 'Graduate School',
+							},
+							'school-name': {
+								title: 'School Name',
+								placeholder: 'Please enter your school name',
+							},
+							'major-subject': {
+								title: 'Major Subject',
+								placeholder: 'Please enter your major subject',
+							},
+							'start-date': {
+								title: 'Start Date',
+							},
+							'end-date': {
+								title: 'End Date',
+							},
+							button: 'Add Educational Level',
+						},
 					},
 				},
 				zh: {
@@ -202,6 +237,33 @@ $(document).ready(function () {
 								'option-4': '親友介紹',
 								'option-5': '獵人頭',
 							},
+						},
+						'educational-level': {
+							heading: '教育程度',
+							level: {
+								title: '教育階段',
+								placeholder: '請選擇',
+								'option-1': '國小',
+								'option-2': '國中',
+								'option-3': '高中職',
+								'option-4': '大學',
+								'option-5': '研究所',
+							},
+							'school-name': {
+								title: '學校名稱',
+								placeholder: '請輸入學校名稱',
+							},
+							'major-subject': {
+								title: '主修科系',
+								placeholder: '請輸入主修科系',
+							},
+							'start-date': {
+								title: '開始日期',
+							},
+							'end-date': {
+								title: '結束日期',
+							},
+							button: '新增教育程度',
 						},
 					},
 				},

@@ -30,7 +30,7 @@
 
 <body>
 	<header class="header-wrapper fixed top-0 h-[90px] w-full bg-white z-50 flex items-center justify-center">
-		<div class="flex container w-full justify-between">
+		<div class="flex max-w-[1280px] container w-full justify-between">
 			<img class="h-12 w-auto" src="https://site-jardine-food-resume.powerappsportals.com/image/logo.png" alt="">
 
 			<button class="lang-btn" type="button" name="language">
@@ -43,7 +43,7 @@
 		</div>
 	</header>
 
-	<div class="container mx-auto mt-[90px] pt-10 antialiased">
+	<div class="max-w-[1280px] container mx-auto mt-[90px] pt-10 antialiased">
 		<div class="flex flex-col gap-8">
 			<h1 class="text-black text-[32px]/10 font-medium" data-i18n="title"></h1>
 			<!-- Basic Information -->
@@ -280,6 +280,89 @@
 							</label>
 						</div>
 					</fieldset>
+				</div>
+			</section>
+			<!-- Educational Level -->
+			<section class="section-wrapper flex flex-col bg-white rounded">
+				<div class="rounded-t bg-jardine-red px-6 py-3">
+					<p class="text-base font-bold text-white" data-i18n="educational-level.heading"></p>
+				</div>
+				<div class="grid grid-cols-1 items-start p-8 gap-8">
+					<div class="grid grid-cols-1 gap-8 items-start" id="Educational_Level_Container">
+						<div class="flex items-center gap-8" id="Educational_Level_1">
+							<div class="flex-1 grid grid-cols-10 gap-x-8 gap-y-4 pb-8 border-b border-light-gray">
+								<label class="flex flex-col gap-2 col-span-2">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="educational-level.level.title"></span>
+									</div>
+									<select id="Educational_Level_Level"
+										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+										<option hidden disabled selected value
+											data-i18n="educational-level.level.placeholder">
+										</option>
+										<option value="elementary-school" data-i18n="educational-level.level.option-1">
+										</option>
+										<option value="junior-high-school" data-i18n="educational-level.level.option-2">
+										</option>
+										<option value="senior-high-school" data-i18n="educational-level.level.option-3">
+										</option>
+										<option value="college-university" data-i18n="educational-level.level.option-4">
+										</option>
+										<option value="graduate-school" data-i18n="educational-level.level.option-5">
+										</option>
+									</select>
+									<span class="Educational_Level_Level_Error -bottom-6 text-jardin-red"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-4">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="educational-level.school-name.title"></span>
+									</div>
+									<input type="text"
+										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										id=Educational_Level_School_Name" name="Educational_Level_School_Name">
+									<span class="Educational_Level_School_Name_Error -bottom-6 text-red-500"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-4">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="educational-level.major-subject.title"></span>
+									</div>
+									<input type="text"
+										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										id=Educational_Level_Major_Subject" name="Educational_Level_Major_Subject">
+									<span class="Educational_Level_Major_Subject_Error -bottom-6 text-red-500"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-5">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="educational-level.start-date.title"></span>
+									</div>
+									<input type="date"
+										class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
+										id="Educational_Level_Start_Date">
+								</label>
+								<label class="flex flex-col gap-2 col-span-5">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="educational-level.end-date.title"></span>
+									</div>
+									<input type="date"
+										class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
+										id="Educational_Level_End_Date">
+								</label>
+							</div>
+							<svg data-id="1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+								stroke-width="1.5" stroke="currentColor"
+								class="remove-educational-level-btn w-6 h-6 stroke-2 cursor-pointer">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+							</svg>
+						</div>
+						<button
+							class="w-full rounded-md bg-gray-white hover:bg-light-gray text-dark-gray p-2 transition"
+							id="add-educational-level-btn" data-i18n="educational-level.button"></button>
+					</div>
 				</div>
 			</section>
 		</div>
