@@ -30,7 +30,7 @@
 
 <body>
 	<header class="header-wrapper fixed top-0 h-[90px] w-full bg-white z-50 flex items-center justify-center">
-		<div class="flex max-w-[1280px] container w-full justify-between">
+		<div class="flex max-w-[1280px] container px-4 lg:px-16 w-full justify-between">
 			<img class="h-12 w-auto" src="https://site-jardine-food-resume.powerappsportals.com/image/logo.png" alt="">
 
 			<button class="lang-btn" type="button" name="language">
@@ -43,7 +43,7 @@
 		</div>
 	</header>
 
-	<div class="max-w-[1280px] container mx-auto mt-[90px] pt-10 antialiased">
+	<div class="max-w-[1280px] container px-4 lg:px-16 mx-auto mt-[90px] pt-10 antialiased">
 		<div class="flex flex-col gap-8">
 			<h1 class="text-black text-[32px]/10 font-medium" data-i18n="title"></h1>
 			<!-- Basic Information -->
@@ -549,6 +549,68 @@
 						<button
 							class="w-full rounded-md bg-gray-white hover:bg-light-gray text-dark-gray p-2 transition"
 							id="add-language-skill-btn" data-i18n="language-skill.button"></button>
+					</div>
+				</div>
+			</section>
+			<!-- Recommender -->
+			<section class="section-wrapper flex flex-col bg-white rounded">
+				<div class="rounded-t bg-jardine-red px-6 py-3">
+					<p class="text-base font-bold text-white" data-i18n="recommender.heading"></p>
+				</div>
+				<div class="grid grid-cols-1 items-start p-8 gap-8">
+					<div class="grid grid-cols-1 gap-8 items-start" id="Job_Experience_Container">
+						<div class="flex items-center gap-8 border-b border-light-gray" id="Job_Experience_1">
+							<div class="flex-1 grid grid-cols-5 gap-x-8 gap-y-4 pb-8">
+								<label class="flex flex-col gap-2 col-span-1">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="recommender.name.title"></span>
+									</div>
+									<input type="text"
+										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										id="Recommender_Name" name="Recommender_Name">
+									<span class="Recommender_Name_Error -bottom-6 text-red-500"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-1">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="recommender.phone.title"></span>
+									</div>
+									<input type="text"
+										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										id="Recommender_Phone" name="Recommender_Phone">
+									<span class="Recommender_Phone_Error -bottom-6 text-red-500"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-2">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="recommender.company-name.title"></span>
+									</div>
+									<input type="text"
+										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										id="Recommender_Company_Name" name="Recommender_Company_Name">
+									<span class="Recommender_Company_Name_Error -bottom-6 text-red-500"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-1">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="recommender.relationship.title"></span>
+									</div>
+									<input type="text"
+										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										id="Recommender_Relationship" name="Recommender_Relationship">
+									<span class="Recommender_Relationship_Error -bottom-6 text-red-500"></span>
+								</label>
+							</div>
+							<svg data-id="1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+								stroke-width="1.5" stroke="currentColor"
+								class="remove-recommender-btn w-6 h-6 stroke-2 cursor-pointer">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+							</svg>
+						</div>
+						<button
+							class="w-full rounded-md bg-gray-white hover:bg-light-gray text-dark-gray p-2 transition"
+							id="add-recommender-btn" data-i18n="recommender.button"></button>
 					</div>
 				</div>
 			</section>

@@ -26,6 +26,10 @@ const rerender = () => {
 	$('input[name=Job_Experience_Position]').attr('placeholder', $.t('job-experience.position.placeholder'));
 	$('input[name=Job_Experience_Company_Name]').attr('placeholder', $.t('job-experience.company-name.placeholder'));
 	$('input[name=Language_Skill_Language]').attr('placeholder', $.t('language-skill.language.placeholder'));
+	$('input[name=Recommender_Name]').attr('placeholder', $.t('recommender.name.placeholder'));
+	$('input[name=Recommender_Phone]').attr('placeholder', $.t('recommender.phone.placeholder'));
+	$('input[name=Recommender_Company_Name]').attr('placeholder', $.t('recommender.company-name.placeholder'));
+	$('input[name=Recommender_Relationship]').attr('placeholder', $.t('recommender.relationship.placeholder'));
 };
 
 $(document).ready(function () {
@@ -213,6 +217,27 @@ $(document).ready(function () {
 							},
 							button: 'Add Language Skill',
 						},
+						recommender: {
+							heading: 'Recommender',
+							note: 'If there is a need to fill in the form, the person who completes the form needs to confirm that the recommender has agreed that the following personal information can be provided to Futura Catering by the form filler. Futura Catering can cooperate with the recommendation in the case of inquiries about the work ability performance of the form filler. Contact us for inquiries.',
+							name: {
+								title: 'Name',
+								placeholder: 'Please enter the name',
+							},
+							phone: {
+								title: 'Phone',
+								placeholder: 'Please enter the phone',
+							},
+							'company-name': {
+								title: 'Company Name',
+								placeholder: 'Please enter the company name',
+							},
+							relationship: {
+								title: 'Relationship',
+								placeholder: 'Please enter your relationship',
+							},
+							button: 'Add Recommender',
+						},
 					},
 				},
 				zh: {
@@ -381,6 +406,27 @@ $(document).ready(function () {
 								title: '結束日期',
 							},
 							button: '新增語言能力',
+						},
+						recommender: {
+							heading: '推薦人',
+							note: '如有填寫需求，填表人需確認，推薦人已同意其以下個人資料得由填表人提供予富利餐飲，富利餐飲於查詢填表人之工作能力表現等相關需求下，得與推薦人聯絡查詢。',
+							name: {
+								title: '姓名',
+								placeholder: '請輸入姓名',
+							},
+							phone: {
+								title: '電話',
+								placeholder: '請輸入電話',
+							},
+							'company-name': {
+								title: '公司名稱',
+								placeholder: '請輸入公司名稱',
+							},
+							relationship: {
+								title: '關係',
+								placeholder: '請輸入關係',
+							},
+							button: '新增推薦人',
 						},
 					},
 				},
