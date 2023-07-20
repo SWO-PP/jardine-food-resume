@@ -154,6 +154,13 @@ $(document).ready(function () {
 							'end-date': {
 								title: 'End Date',
 							},
+							status: {
+								title: 'Status',
+								placeholder: 'Please select',
+								'option-1': 'Graduated',
+								'option-2': 'Dropped out',
+								'option-3': 'In school',
+							},
 							button: 'Add Educational Level',
 						},
 						'job-experience': {
@@ -315,6 +322,13 @@ $(document).ready(function () {
 							},
 							'end-date': {
 								title: '結束日期',
+							},
+							status: {
+								title: '狀態',
+								placeholder: '請選擇',
+								'option-1': '畢業',
+								'option-2': '肄業',
+								'option-3': '就學中',
 							},
 							button: '新增教育程度',
 						},

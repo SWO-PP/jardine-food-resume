@@ -334,7 +334,7 @@
 										id=Educational_Level_Major_Subject" name="Educational_Level_Major_Subject">
 									<span class="Educational_Level_Major_Subject_Error -bottom-6 text-red-500"></span>
 								</label>
-								<label class="flex flex-col gap-2 col-span-5">
+								<label class="flex flex-col gap-2 col-span-4">
 									<div class="flex">
 										<span class="text-dark-gray text-base"
 											data-i18n="educational-level.start-date.title"></span>
@@ -343,7 +343,7 @@
 										class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
 										id="Educational_Level_Start_Date">
 								</label>
-								<label class="flex flex-col gap-2 col-span-5">
+								<label class="flex flex-col gap-2 col-span-4">
 									<div class="flex">
 										<span class="text-dark-gray text-base"
 											data-i18n="educational-level.end-date.title"></span>
@@ -351,6 +351,25 @@
 									<input type="date"
 										class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
 										id="Educational_Level_End_Date">
+								</label>
+								<label class="flex flex-col gap-2 col-span-2">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="educational-level.status.title"></span>
+									</div>
+									<select id="Educational_Level_Status"
+										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+										<option hidden disabled selected value
+											data-i18n="educational-level.status.placeholder">
+										</option>
+										<option value="graduated" data-i18n="educational-level.status.option-1">
+										</option>
+										<option value="dropped-out" data-i18n="educational-level.status.option-2">
+										</option>
+										<option value="in-school" data-i18n="educational-level.status.option-3">
+										</option>
+									</select>
+									<span class="Educational_Level_Status_Error -bottom-6 text-jardin-red"></span>
 								</label>
 							</div>
 							<svg data-id="1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
