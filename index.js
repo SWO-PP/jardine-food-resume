@@ -30,6 +30,8 @@ const rerender = () => {
 	$('input[name=Recommender_Phone]').attr('placeholder', $.t('recommender.phone.placeholder'));
 	$('input[name=Recommender_Company_Name]').attr('placeholder', $.t('recommender.company-name.placeholder'));
 	$('input[name=Recommender_Relationship]').attr('placeholder', $.t('recommender.relationship.placeholder'));
+	$('input[name=Available_Time]').attr('placeholder', $.t('other-information.available-time.placeholder'));
+	$('input[name=License]').attr('placeholder', $.t('other-information.license.placeholder'));
 };
 
 $(document).ready(function () {
@@ -238,6 +240,32 @@ $(document).ready(function () {
 							},
 							button: 'Add Recommender',
 						},
+						'other-information': {
+							heading: 'Other Information',
+							'available-time': {
+								title: 'Please briefly describe the working hours, for example: Wednesday 8~18, Thursday 6~16, Sunday all day',
+								placeholder: 'Please enter your available time',
+							},
+							license: {
+								title: 'Please briefly describe the special vocational or technical training you have received or the relevant licenses you have held',
+								placeholder: 'Please enter your license',
+							},
+							'family-survey': {
+								title: 'Do you have family member who work in the catering or fast food industry?',
+								'option-1': 'Yes',
+								'option-2': 'No',
+							},
+							'physical-dysfunction': {
+								title: 'Physical dysfunction',
+								'option-1': 'Yes',
+								'option-2': 'No',
+							},
+							'disabled-employment': {
+								title: 'According to the laws and regulations, companies need to declare when employing disabled employees. Are you willing to provide handbooks for the use of the company?',
+								'option-1': 'Willing',
+								'option-2': 'Unwilling',
+							},
+						},
 					},
 				},
 				zh: {
@@ -427,6 +455,32 @@ $(document).ready(function () {
 								placeholder: '請輸入關係',
 							},
 							button: '新增推薦人',
+						},
+						'other-information': {
+							heading: '其他資訊',
+							'available-time': {
+								title: '請簡述可上班時段，例如：星期三8~18、星期四6~16、星期日整天',
+								placeholder: '請簡述可上班時段',
+							},
+							license: {
+								title: '請簡述所受之特殊職業或技術訓練或持有之相關執照',
+								placeholder: '請簡述執照',
+							},
+							'family-survey': {
+								title: '您是否有親人在餐飲或速食業工作？',
+								'option-1': '是',
+								'option-2': '否',
+							},
+							'physical-dysfunction': {
+								title: '身體機能障礙',
+								'option-1': '是',
+								'option-2': '否',
+							},
+							'disabled-employment': {
+								title: '依照法令規定企業進用身心障礙員工需做申報，是否願意提供身障手冊為公司之用',
+								'option-1': '願意',
+								'option-2': '不願意',
+							},
 						},
 					},
 				},

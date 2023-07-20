@@ -125,14 +125,14 @@
 							<label class="flex items-center">
 								<input type="radio"
 									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
-									name="Nationality_Option_1" value="roc">
+									name="Nationality_Option" value="roc">
 								<span class="ml-2 mb-0.5 text-dark-gray"
 									data-i18n="basic-information.nationality.option-1"></span>
 							</label>
 							<label class="flex items-center">
 								<input type="radio"
 									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
-									name="Nationality_Option_2" value="other">
+									name="Nationality_Option" value="other">
 								<span class="ml-2 mb-0.5 text-dark-gray"
 									data-i18n="basic-information.nationality.option-2"></span>
 							</label>
@@ -559,8 +559,8 @@
 				</div>
 				<div class="grid grid-cols-1 items-start p-8 gap-8">
 					<h4 data-i18n="recommender.note" class="text-dark-gray leading-6"></h4>
-					<div class="grid grid-cols-1 gap-8 items-start" id="Job_Experience_Container">
-						<div class="flex items-center gap-8 border-b border-light-gray" id="Job_Experience_1">
+					<div class="grid grid-cols-1 gap-8 items-start" id="Recommender_Container">
+						<div class="flex items-center gap-8 border-b border-light-gray" id="Recommender_1">
 							<div class="flex-1 grid grid-cols-5 gap-x-8 gap-y-4 pb-8">
 								<label class="flex flex-col gap-2 col-span-1">
 									<div class="flex">
@@ -613,6 +613,102 @@
 							class="w-full rounded-md bg-gray-white hover:bg-light-gray text-dark-gray p-2 transition"
 							id="add-recommender-btn" data-i18n="recommender.button"></button>
 					</div>
+				</div>
+			</section>
+			<!-- Other Information -->
+			<section class="section-wrapper flex flex-col bg-white rounded">
+				<div class="rounded-t bg-jardine-red px-6 py-3">
+					<p class="text-base font-bold text-white" data-i18n="other-information.heading"></p>
+				</div>
+				<div class="grid grid-cols-1 items-start p-8 gap-8">
+					<label class="flex flex-col gap-2">
+						<div class="flex">
+							<span class="text-jardine-red mr-1">*</span>
+							<span class="text-dark-gray text-base"
+								data-i18n="other-information.available-time.title"></span>
+						</div>
+						<input type="text"
+							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+							id=Available_Time" name="Available_Time">
+					</label>
+					<label class="flex flex-col gap-2">
+						<div class="flex">
+							<span class="text-jardine-red mr-1">*</span>
+							<span class="text-dark-gray text-base" data-i18n="other-information.license.title"></span>
+						</div>
+						<input type="text"
+							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+							id=License" name="License">
+					</label>
+					<fieldset class="flex flex-col gap-2">
+						<div class="flex">
+							<span class="text-jardine-red mr-1">*</span>
+							<span class="text-dark-gray text-base"
+								data-i18n="other-information.family-survey.title"></span>
+						</div>
+						<div class="flex flex-row gap-8 h-12">
+							<label class="flex items-center">
+								<input type="radio"
+									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
+									name="Family_Survey_Option" value="yes">
+								<span class="ml-2 mb-0.5 text-dark-gray"
+									data-i18n="other-information.family-survey.option-1"></span>
+							</label>
+							<label class="flex items-center">
+								<input type="radio"
+									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
+									name="Family_Survey_Option" value="no">
+								<span class="ml-2 mb-0.5 text-dark-gray"
+									data-i18n="other-information.family-survey.option-2"></span>
+							</label>
+						</div>
+					</fieldset>
+					<fieldset class="flex flex-col gap-2">
+						<div class="flex">
+							<span class="text-jardine-red mr-1">*</span>
+							<span class="text-dark-gray text-base"
+								data-i18n="other-information.physical-dysfunction.title"></span>
+						</div>
+						<div class="flex flex-row gap-8 h-12">
+							<label class="flex items-center">
+								<input type="radio"
+									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
+									name="Family_Survey_Option" value="yes">
+								<span class="ml-2 mb-0.5 text-dark-gray"
+									data-i18n="other-information.physical-dysfunction.option-1"></span>
+							</label>
+							<label class="flex items-center">
+								<input type="radio"
+									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
+									name="Family_Survey_Option" value="no">
+								<span class="ml-2 mb-0.5 text-dark-gray"
+									data-i18n="other-information.physical-dysfunction.option-2"></span>
+							</label>
+						</div>
+					</fieldset>
+					<fieldset class="flex flex-col gap-2">
+						<div class="flex">
+							<span class="text-jardine-red mr-1">*</span>
+							<span class="text-dark-gray text-base"
+								data-i18n="other-information.disabled-employment.title"></span>
+						</div>
+						<div class="flex flex-row gap-8 h-12">
+							<label class="flex items-center">
+								<input type="radio"
+									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
+									name="Family_Survey_Option" value="yes">
+								<span class="ml-2 mb-0.5 text-dark-gray"
+									data-i18n="other-information.disabled-employment.option-1"></span>
+							</label>
+							<label class="flex items-center">
+								<input type="radio"
+									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
+									name="Family_Survey_Option" value="no">
+								<span class="ml-2 mb-0.5 text-dark-gray"
+									data-i18n="other-information.disabled-employment.option-2"></span>
+							</label>
+						</div>
+					</fieldset>
 				</div>
 			</section>
 		</div>
