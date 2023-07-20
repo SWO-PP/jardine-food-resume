@@ -25,6 +25,7 @@ const rerender = () => {
 	);
 	$('input[name=Job_Experience_Position]').attr('placeholder', $.t('job-experience.position.placeholder'));
 	$('input[name=Job_Experience_Company_Name]').attr('placeholder', $.t('job-experience.company-name.placeholder'));
+	$('input[name=Language_Skill_Language]').attr('placeholder', $.t('language-skill.language.placeholder'));
 };
 
 $(document).ready(function () {
@@ -39,7 +40,7 @@ $(document).ready(function () {
 	// metadata - title
 	document.title = 'Jardine Food 履歷表';
 
-	// langauge
+	// language
 	i18next.use(i18nextBrowserLanguageDetector).init(
 		{
 			debug: true,
@@ -173,6 +174,38 @@ $(document).ready(function () {
 							},
 							button: 'Add Job Experience',
 						},
+						'language-skill': {
+							heading: 'Language Skill',
+							language: {
+								title: 'Language',
+								placeholder: 'Please enter language',
+							},
+							option: {
+								placeholder: 'Please select',
+								'option-1': 'Proficient',
+								'option-2': 'Intermediate',
+								'option-3': 'Understandable',
+							},
+							listen: {
+								title: 'Listen',
+							},
+							read: {
+								title: 'Read',
+							},
+							write: {
+								title: 'Write',
+							},
+							speak: {
+								title: 'Speak',
+							},
+							'start-date': {
+								title: 'Start Date',
+							},
+							'end-date': {
+								title: 'End Date',
+							},
+							button: 'Add Language Skill',
+						},
 					},
 				},
 				zh: {
@@ -302,6 +335,38 @@ $(document).ready(function () {
 								title: '結束日期',
 							},
 							button: '新增工作經歷',
+						},
+						'language-skill': {
+							heading: '語言能力',
+							language: {
+								title: '語言',
+								placeholder: '請輸入語言',
+							},
+							option: {
+								placeholder: '請選擇',
+								'option-1': '精通',
+								'option-2': '中等',
+								'option-3': '略懂',
+							},
+							listen: {
+								title: '聽',
+							},
+							read: {
+								title: '讀',
+							},
+							write: {
+								title: '寫',
+							},
+							speak: {
+								title: '說',
+							},
+							'start-date': {
+								title: '開始日期',
+							},
+							'end-date': {
+								title: '結束日期',
+							},
+							button: '新增語言能力',
 						},
 					},
 				},

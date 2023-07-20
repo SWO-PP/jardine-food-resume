@@ -425,6 +425,114 @@
 					</div>
 				</div>
 			</section>
+			<!-- Language Skill -->
+			<section class="section-wrapper flex flex-col bg-white rounded">
+				<div class="rounded-t bg-jardine-red px-6 py-3">
+					<p class="text-base font-bold text-white" data-i18n="language-skill.heading"></p>
+				</div>
+				<div class="grid grid-cols-1 items-start p-8 gap-8">
+					<div class="grid grid-cols-1 gap-8 items-start" id="Language_Skill_Container">
+						<div class="flex items-center gap-8 border-b border-light-gray" id="Language_Skill_1">
+							<div class="flex-1 grid grid-cols-10 gap-x-8 gap-y-4 pb-8">
+								<label class="flex flex-col gap-2 col-span-2">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="language-skill.language.title"></span>
+									</div>
+									<input type="text"
+										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										id=Language_Skill_Language" name="Language_Skill_Language">
+									<span class="Language_Skill_Language_Error -bottom-6 text-red-500"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-2">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="language-skill.listen.title"></span>
+									</div>
+									<select id="Language_Skill_Listen"
+										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+										<option hidden disabled selected value
+											data-i18n="language-skill.option.placeholder">
+										</option>
+										<option value="proficient" data-i18n="language-skill.option.option-1">
+										</option>
+										<option value="intermediate" data-i18n="language-skill.option.option-2">
+										</option>
+										<option value="understandable" data-i18n="language-skill.option.option-3">
+										</option>
+									</select>
+									<span class="Language_Skill_Listen_Error -bottom-6 text-jardin-red"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-2">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="language-skill.read.title"></span>
+									</div>
+									<select id="Language_Skill_Read"
+										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+										<option hidden disabled selected value
+											data-i18n="language-skill.option.placeholder">
+										</option>
+										<option value="proficient" data-i18n="language-skill.option.option-1">
+										</option>
+										<option value="intermediate" data-i18n="language-skill.option.option-2">
+										</option>
+										<option value="understandable" data-i18n="language-skill.option.option-3">
+										</option>
+									</select>
+									<span class="Language_Skill_Read_Error -bottom-6 text-jardin-red"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-2">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="language-skill.write.title"></span>
+									</div>
+									<select id="Language_Skill_Write"
+										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+										<option hidden disabled selected value
+											data-i18n="language-skill.option.placeholder">
+										</option>
+										<option value="proficient" data-i18n="language-skill.option.option-1">
+										</option>
+										<option value="intermediate" data-i18n="language-skill.option.option-2">
+										</option>
+										<option value="understandable" data-i18n="language-skill.option.option-3">
+										</option>
+									</select>
+									<span class="Language_Skill_Write_Error -bottom-6 text-jardin-red"></span>
+								</label>
+								<label class="flex flex-col gap-2 col-span-2">
+									<div class="flex">
+										<span class="text-dark-gray text-base"
+											data-i18n="language-skill.speak.title"></span>
+									</div>
+									<select id="Language_Skill_Speak"
+										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+										<option hidden disabled selected value
+											data-i18n="language-skill.option.placeholder">
+										</option>
+										<option value="proficient" data-i18n="language-skill.option.option-1">
+										</option>
+										<option value="intermediate" data-i18n="language-skill.option.option-2">
+										</option>
+										<option value="understandable" data-i18n="language-skill.option.option-3">
+										</option>
+									</select>
+									<span class="Language_Skill_Speak_Error -bottom-6 text-jardin-red"></span>
+								</label>
+							</div>
+							<svg data-id="1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+								stroke-width="1.5" stroke="currentColor"
+								class="remove-language-skill-btn w-6 h-6 stroke-2 cursor-pointer">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+							</svg>
+						</div>
+						<button
+							class="w-full rounded-md bg-gray-white hover:bg-light-gray text-dark-gray p-2 transition"
+							id="add-language-skill-btn" data-i18n="language-skill.button"></button>
+					</div>
+				</div>
+			</section>
 		</div>
 	</div>
 
