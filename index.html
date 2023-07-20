@@ -156,6 +156,46 @@
 					<label class="flex flex-col gap-2">
 						<div class="flex">
 							<span class="text-jardine-red mr-1">*</span>
+							<span class="text-dark-gray text-base"
+								data-i18n="basic-information.resident-certificate-no.title"></span>
+						</div>
+						<input type="text"
+							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+							id="Resident_Certificate_No" name="Resident_Certificate_No">
+					</label>
+					<label class="flex flex-col gap-2">
+						<div class="flex">
+							<span class="text-jardine-red mr-1">*</span>
+							<span class="text-dark-gray text-base"
+								data-i18n="basic-information.resident-certificate-effective-date.title"></span>
+						</div>
+						<input type="date"
+							class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
+							id="Resident_Certificate_Effective_Date">
+					</label>
+					<label class="flex flex-col gap-2">
+						<div class="flex">
+							<span class="text-jardine-red mr-1">*</span>
+							<span class="text-dark-gray text-base"
+								data-i18n="basic-information.work-permit-certificate-no.title"></span>
+						</div>
+						<input type="text"
+							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+							id=Work_Permit_Certificate_No" name="Work_Permit_Certificate_No">
+					</label>
+					<label class="flex flex-col gap-2">
+						<div class="flex">
+							<span class="text-jardine-red mr-1">*</span>
+							<span class="text-dark-gray text-base"
+								data-i18n="basic-information.work-permit-certificate-effective-date.title"></span>
+						</div>
+						<input type="date"
+							class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
+							id="Work_Permit_Certificate_Effective_Date">
+					</label>
+					<label class="flex flex-col gap-2">
+						<div class="flex">
+							<span class="text-jardine-red mr-1">*</span>
 							<span class="text-dark-gray text-base" data-i18n="basic-information.email.title"></span>
 						</div>
 						<input type="email"
@@ -296,8 +336,8 @@
 										<span class="text-dark-gray text-base"
 											data-i18n="educational-level.level.title"></span>
 									</div>
-									<select id="Educational_Level_Level"
-										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+									<select
+										class="Level form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
 										<option hidden disabled selected value
 											data-i18n="educational-level.level.placeholder">
 										</option>
@@ -312,7 +352,7 @@
 										<option value="graduate-school" data-i18n="educational-level.level.option-5">
 										</option>
 									</select>
-									<span class="Educational_Level_Level_Error -bottom-6 text-jardin-red"></span>
+									<span class="Level_Error -bottom-6 text-jardin-red"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-4">
 									<div class="flex">
@@ -320,9 +360,9 @@
 											data-i18n="educational-level.school-name.title"></span>
 									</div>
 									<input type="text"
-										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-										id=Educational_Level_School_Name" name="Educational_Level_School_Name">
-									<span class="Educational_Level_School_Name_Error -bottom-6 text-red-500"></span>
+										class="School_Name block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										name="School_Name">
+									<span class="School_Name_Error -bottom-6 text-red-500"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-4">
 									<div class="flex">
@@ -330,9 +370,9 @@
 											data-i18n="educational-level.major-subject.title"></span>
 									</div>
 									<input type="text"
-										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-										id=Educational_Level_Major_Subject" name="Educational_Level_Major_Subject">
-									<span class="Educational_Level_Major_Subject_Error -bottom-6 text-red-500"></span>
+										class="Major_Subject block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										name="Major_Subject">
+									<span class="Major_Subject_Error -bottom-6 text-red-500"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-4">
 									<div class="flex">
@@ -340,8 +380,7 @@
 											data-i18n="educational-level.start-date.title"></span>
 									</div>
 									<input type="date"
-										class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
-										id="Educational_Level_Start_Date">
+										class="Start_Date form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer">
 								</label>
 								<label class="flex flex-col gap-2 col-span-4">
 									<div class="flex">
@@ -349,16 +388,15 @@
 											data-i18n="educational-level.end-date.title"></span>
 									</div>
 									<input type="date"
-										class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
-										id="Educational_Level_End_Date">
+										class="End_Date form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer">
 								</label>
 								<label class="flex flex-col gap-2 col-span-2">
 									<div class="flex">
 										<span class="text-dark-gray text-base"
 											data-i18n="educational-level.status.title"></span>
 									</div>
-									<select id="Educational_Level_Status"
-										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+									<select
+										class="Status form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
 										<option hidden disabled selected value
 											data-i18n="educational-level.status.placeholder">
 										</option>
@@ -369,7 +407,7 @@
 										<option value="in-school" data-i18n="educational-level.status.option-3">
 										</option>
 									</select>
-									<span class="Educational_Level_Status_Error -bottom-6 text-jardin-red"></span>
+									<span class="Status_Error -bottom-6 text-jardin-red"></span>
 								</label>
 							</div>
 							<svg data-id="1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -399,9 +437,9 @@
 											data-i18n="job-experience.position.title"></span>
 									</div>
 									<input type="text"
-										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-										id=Job_Experience_Position" name="Job_Experience_Position">
-									<span class="Job_Experience_Position_Error -bottom-6 text-red-500"></span>
+										class="Position block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										name="Position">
+									<span class="Position_Error -bottom-6 text-red-500"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-1">
 									<div class="flex">
@@ -409,9 +447,9 @@
 											data-i18n="job-experience.company-name.title"></span>
 									</div>
 									<input type="text"
-										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-										id=Job_Experience_Company_Name" name="Job_Experience_Company_Name">
-									<span class="Job_Experience_Company_Name_Error -bottom-6 text-red-500"></span>
+										class="Company_Name block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										name="Company_Name">
+									<span class="Company_Name_Error -bottom-6 text-red-500"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-1">
 									<div class="flex">
@@ -419,8 +457,7 @@
 											data-i18n="job-experience.start-date.title"></span>
 									</div>
 									<input type="date"
-										class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
-										id="Job_Experience_Start_Date">
+										class="Start_Date form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer">
 								</label>
 								<label class="flex flex-col gap-2 col-span-1">
 									<div class="flex">
@@ -428,8 +465,7 @@
 											data-i18n="job-experience.end-date.title"></span>
 									</div>
 									<input type="date"
-										class="form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer"
-										id="Job_Experience_End_Date">
+										class="End_Date form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer">
 								</label>
 							</div>
 							<svg data-id="1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -459,16 +495,16 @@
 											data-i18n="language-skill.language.title"></span>
 									</div>
 									<input type="text"
-										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-										id=Language_Skill_Language" name="Language_Skill_Language">
-									<span class="Language_Skill_Language_Error -bottom-6 text-red-500"></span>
+										class="Language block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										name="Language">
+									<span class="Language_Error -bottom-6 text-red-500"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-2">
 									<div class="flex">
 										<span class="text-dark-gray text-base"
 											data-i18n="language-skill.listen.title"></span>
 									</div>
-									<select id="Language_Skill_Listen"
+									<select id="Listen"
 										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
 										<option hidden disabled selected value
 											data-i18n="language-skill.option.placeholder">
@@ -480,14 +516,14 @@
 										<option value="understandable" data-i18n="language-skill.option.option-3">
 										</option>
 									</select>
-									<span class="Language_Skill_Listen_Error -bottom-6 text-jardin-red"></span>
+									<span class="Listen_Error -bottom-6 text-jardin-red"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-2">
 									<div class="flex">
 										<span class="text-dark-gray text-base"
 											data-i18n="language-skill.read.title"></span>
 									</div>
-									<select id="Language_Skill_Read"
+									<select id="Read"
 										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
 										<option hidden disabled selected value
 											data-i18n="language-skill.option.placeholder">
@@ -499,14 +535,14 @@
 										<option value="understandable" data-i18n="language-skill.option.option-3">
 										</option>
 									</select>
-									<span class="Language_Skill_Read_Error -bottom-6 text-jardin-red"></span>
+									<span class="Read_Error -bottom-6 text-jardin-red"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-2">
 									<div class="flex">
 										<span class="text-dark-gray text-base"
 											data-i18n="language-skill.write.title"></span>
 									</div>
-									<select id="Language_Skill_Write"
+									<select id="Write"
 										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
 										<option hidden disabled selected value
 											data-i18n="language-skill.option.placeholder">
@@ -518,14 +554,14 @@
 										<option value="understandable" data-i18n="language-skill.option.option-3">
 										</option>
 									</select>
-									<span class="Language_Skill_Write_Error -bottom-6 text-jardin-red"></span>
+									<span class="Write_Error -bottom-6 text-jardin-red"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-2">
 									<div class="flex">
 										<span class="text-dark-gray text-base"
 											data-i18n="language-skill.speak.title"></span>
 									</div>
-									<select id="Language_Skill_Speak"
+									<select id="Speak"
 										class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
 										<option hidden disabled selected value
 											data-i18n="language-skill.option.placeholder">
@@ -537,7 +573,7 @@
 										<option value="understandable" data-i18n="language-skill.option.option-3">
 										</option>
 									</select>
-									<span class="Language_Skill_Speak_Error -bottom-6 text-jardin-red"></span>
+									<span class="Speak_Error -bottom-6 text-jardin-red"></span>
 								</label>
 							</div>
 							<svg data-id="1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -568,9 +604,9 @@
 											data-i18n="recommender.name.title"></span>
 									</div>
 									<input type="text"
-										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-										id="Recommender_Name" name="Recommender_Name">
-									<span class="Recommender_Name_Error -bottom-6 text-red-500"></span>
+										class="Name block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										name="Name">
+									<span class="Name_Error -bottom-6 text-red-500"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-1">
 									<div class="flex">
@@ -578,9 +614,9 @@
 											data-i18n="recommender.phone.title"></span>
 									</div>
 									<input type="text"
-										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-										id="Recommender_Phone" name="Recommender_Phone">
-									<span class="Recommender_Phone_Error -bottom-6 text-red-500"></span>
+										class="Phone block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										name="Phone">
+									<span class="Phone_Error -bottom-6 text-red-500"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-2">
 									<div class="flex">
@@ -588,9 +624,9 @@
 											data-i18n="recommender.company-name.title"></span>
 									</div>
 									<input type="text"
-										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-										id="Recommender_Company_Name" name="Recommender_Company_Name">
-									<span class="Recommender_Company_Name_Error -bottom-6 text-red-500"></span>
+										class="Company_Name block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										name="Company_Name">
+									<span class="Company_Name_Error -bottom-6 text-red-500"></span>
 								</label>
 								<label class="flex flex-col gap-2 col-span-1">
 									<div class="flex">
@@ -598,9 +634,9 @@
 											data-i18n="recommender.relationship.title"></span>
 									</div>
 									<input type="text"
-										class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-										id="Recommender_Relationship" name="Recommender_Relationship">
-									<span class="Recommender_Relationship_Error -bottom-6 text-red-500"></span>
+										class="Relationship block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+										name="Relationship">
+									<span class="Relationship_Error -bottom-6 text-red-500"></span>
 								</label>
 							</div>
 							<svg data-id="1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -673,14 +709,14 @@
 							<label class="flex items-center">
 								<input type="radio"
 									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
-									name="Family_Survey_Option" value="yes">
+									name="Physical_Dysfunction_Option" value="yes">
 								<span class="ml-2 mb-0.5 text-dark-gray"
 									data-i18n="other-information.physical-dysfunction.option-1"></span>
 							</label>
 							<label class="flex items-center">
 								<input type="radio"
 									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
-									name="Family_Survey_Option" value="no">
+									name="Physical_Dysfunction_Option" value="no">
 								<span class="ml-2 mb-0.5 text-dark-gray"
 									data-i18n="other-information.physical-dysfunction.option-2"></span>
 							</label>
@@ -696,14 +732,14 @@
 							<label class="flex items-center">
 								<input type="radio"
 									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
-									name="Family_Survey_Option" value="yes">
+									name="Disabled_Employment_Option" value="yes">
 								<span class="ml-2 mb-0.5 text-dark-gray"
 									data-i18n="other-information.disabled-employment.option-1"></span>
 							</label>
 							<label class="flex items-center">
 								<input type="radio"
 									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
-									name="Family_Survey_Option" value="no">
+									name="Disabled_Employment_Option" value="no">
 								<span class="ml-2 mb-0.5 text-dark-gray"
 									data-i18n="other-information.disabled-employment.option-2"></span>
 							</label>

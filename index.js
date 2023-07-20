@@ -9,27 +9,44 @@ const rerender = () => {
 	$('input[name=English_Name]').attr('placeholder', $.t('basic-information.english-name.placeholder'));
 	$('input[name=Nationality_Other]').attr('placeholder', $.t('basic-information.nationality.placeholder'));
 	$('input[name=Personal_ID]').attr('placeholder', $.t('basic-information.personal-id.placeholder'));
+	$('input[name=Resident_Certificate_No]').attr(
+		'placeholder',
+		$.t('basic-information.resident-certificate-no.placeholder')
+	);
+	$('input[name=Work_Permit_Certificate_No]').attr(
+		'placeholder',
+		$.t('basic-information.work-permit-certificate-no.placeholder')
+	);
 	$('input[name=Height]').attr('placeholder', $.t('basic-information.height.placeholder'));
 	$('input[name=Weight]').attr('placeholder', $.t('basic-information.weight.placeholder'));
 	$('input[name=Email]').attr('placeholder', $.t('basic-information.email.placeholder'));
 	$('input[name=Mobile_Phone]').attr('placeholder', $.t('basic-information.mobile-phone.placeholder'));
 	$('input[name=Contact_Address]').attr('placeholder', $.t('basic-information.contact-address.placeholder'));
 	$('input[name=Residence_Address]').attr('placeholder', $.t('basic-information.residence-address.placeholder'));
-	$('input[name=Educational_Level_School_Name]').attr(
+	$('#Educational_Level_Container input[name=School_Name]').attr(
 		'placeholder',
 		$.t('educational-level.school-name.placeholder')
 	);
-	$('input[name=Educational_Level_Major_Subject]').attr(
+	$('#Educational_Level_Container input[name=Major_Subject]').attr(
 		'placeholder',
 		$.t('educational-level.major-subject.placeholder')
 	);
-	$('input[name=Job_Experience_Position]').attr('placeholder', $.t('job-experience.position.placeholder'));
-	$('input[name=Job_Experience_Company_Name]').attr('placeholder', $.t('job-experience.company-name.placeholder'));
-	$('input[name=Language_Skill_Language]').attr('placeholder', $.t('language-skill.language.placeholder'));
-	$('input[name=Recommender_Name]').attr('placeholder', $.t('recommender.name.placeholder'));
-	$('input[name=Recommender_Phone]').attr('placeholder', $.t('recommender.phone.placeholder'));
-	$('input[name=Recommender_Company_Name]').attr('placeholder', $.t('recommender.company-name.placeholder'));
-	$('input[name=Recommender_Relationship]').attr('placeholder', $.t('recommender.relationship.placeholder'));
+	$('#Job_Experience_Container input[name=Position]').attr('placeholder', $.t('job-experience.position.placeholder'));
+	$('#Job_Experience_Container input[name=Company_Name]').attr(
+		'placeholder',
+		$.t('job-experience.company-name.placeholder')
+	);
+	$('#Language_Skill_Container input[name=Language]').attr('placeholder', $.t('language-skill.language.placeholder'));
+	$('#Recommender_Container input[name=Name]').attr('placeholder', $.t('recommender.name.placeholder'));
+	$('#Recommender_Container input[name=Phone]').attr('placeholder', $.t('recommender.phone.placeholder'));
+	$('#Recommender_Container input[name=Company_Name]').attr(
+		'placeholder',
+		$.t('recommender.company-name.placeholder')
+	);
+	$('#Recommender_Container input[name=Relationship]').attr(
+		'placeholder',
+		$.t('recommender.relationship.placeholder')
+	);
 	$('input[name=Available_Time]').attr('placeholder', $.t('other-information.available-time.placeholder'));
 	$('input[name=License]').attr('placeholder', $.t('other-information.license.placeholder'));
 };
@@ -93,6 +110,20 @@ $(document).ready(function () {
 							'personal-id': {
 								title: 'Personal ID',
 								placeholder: 'Please enter your personal ID',
+							},
+							'resident-certificate-no': {
+								title: 'Resident Certificate No.',
+								placeholder: 'Please enter your resident certificate no.',
+							},
+							'resident-certificate-effective-date': {
+								title: 'Effective Date',
+							},
+							'work-permit-certificate-no': {
+								title: 'Work Permit Certificate No.',
+								placeholder: 'Please enter your work permit certificate no.',
+							},
+							'work-permit-certificate-effective-date': {
+								title: 'Effective Date',
 							},
 							height: {
 								title: 'Height (cm)',
@@ -323,6 +354,20 @@ $(document).ready(function () {
 								title: '國民身份證字號',
 								placeholder: '請輸入身份證字號',
 							},
+							'resident-certificate-no': {
+								title: '居留證字號',
+								placeholder: '請輸入居留證字號',
+							},
+							'resident-certificate-effective-date': {
+								title: '有效日期',
+							},
+							'work-permit-certificate-no': {
+								title: '工作許可字號',
+								placeholder: '請輸入工作許可字號',
+							},
+							'work-permit-certificate-effective-date': {
+								title: '有效日期',
+							},
 							height: {
 								title: '身高（公分）',
 								placeholder: '請輸入身高',
@@ -542,33 +587,77 @@ $(document).ready(function () {
 
 	const Shop_ID = getQueryVariable('shop_id');
 	$('#Shop_ID').val(Shop_ID);
-	$('#Today').html(dayjs().format('YYYY/MM/DD'));
+	// $('#Today').html(dayjs().format('YYYY/MM/DD'));
 
 	// Init Form Value
 	let applicationForm = {
-		Name_Zh: { value: '', valid: true, error: '' },
-		Name_En: { value: '', valid: true, error: '' },
-		Birth_Date: { value: '', valid: true, error: '' },
+		Position: { value: '', valid: true, error: '' },
+		Chinese_Name: { value: '', valid: true, error: '' },
+		English_Name: { value: '', valid: true, error: '' },
+		Birthday: { value: '', valid: true, error: '' },
 		Gender: { value: '', valid: true, error: '' },
+		Nationality: { value: '', valid: true, error: '' },
+		Personal_ID: { value: '', valid: true, error: '' },
+		Resident_Certificate_No: { value: '', valid: true, error: '' },
+		Resident_Certificate_Effective_Date: { value: '', valid: true, error: '' },
+		Work_Permit_Certificate_No: { value: '', valid: true, error: '' },
+		Work_Permit_Certificate_Effective_Date: { value: '', valid: true, error: '' },
 		Email: { value: '', valid: true, error: '' },
-		Employment: [
+		Mobile_Phone: { value: '', valid: true, error: '' },
+		Contact_Address: { value: '', valid: true, error: '' },
+		Residence_Address: { value: '', valid: true, error: '' },
+		Driving_License: { value: '', valid: true, error: '' },
+		Recruiting_Source: { value: '', valid: true, error: '' },
+		Educational_Level: [
 			{
-				From_Date: { value: '', valid: true, error: '' },
-				To_Date: { value: '', valid: true, error: '' },
-				Company: { value: '', valid: true, error: '' },
-				Title: { value: '', valid: true, error: '' },
+				Level: { value: '', valid: true, error: '' },
+				School_Name: { value: '', valid: true, error: '' },
+				Major_Subject: { value: '', valid: true, error: '' },
+				Start_Date: { value: '', valid: true, error: '' },
+				End_Date: { value: '', valid: true, error: '' },
+				Status: { value: '', valid: true, error: '' },
 			},
 		],
+		Job_Experience: [
+			{
+				Position: { value: '', valid: true, error: '' },
+				Company_Name: { value: '', valid: true, error: '' },
+				Start_Date: { value: '', valid: true, error: '' },
+				End_Date: { value: '', valid: true, error: '' },
+			},
+		],
+		Language_Skill: [
+			{
+				Language: { value: '', valid: true, error: '' },
+				Listen: { value: '', valid: true, error: '' },
+				Read: { value: '', valid: true, error: '' },
+				Write: { value: '', valid: true, error: '' },
+				Speak: { value: '', valid: true, error: '' },
+			},
+		],
+		Recommender: [
+			{
+				Name: { value: '', valid: true, error: '' },
+				Phone: { value: '', valid: true, error: '' },
+				Company_Name: { value: '', valid: true, error: '' },
+				Relationship: { value: '', valid: true, error: '' },
+			},
+		],
+		Available_Time: { value: '', valid: true, error: '' },
+		License: { value: '', valid: true, error: '' },
+		Family_Survey: { value: '', valid: true, error: '' },
+		Physical_Dysfunction: { value: '', valid: true, error: '' },
+		Disabled_Employment: { value: '', valid: true, error: '' },
 	};
-	$('#Name_Zh').change(e => (applicationForm.Name_Zh.value = e.target.value));
-	$('#Name_En').change(e => (applicationForm.Name_En.value = e.target.value));
-	$('#Birth_Date').change(e => (applicationForm.Birth_Date.value = e.target.value));
-	$('#Gender').change(e => (applicationForm.Gender.value = e.target.value));
-	$('#Email').change(e => (applicationForm.Email.value = e.target.value));
-	$('#Employment_1 .From_Date').change(e => (applicationForm.Employment[0].From_Date.value = e.target.value));
-	$('#Employment_1 .To_Date').change(e => (applicationForm.Employment[0].To_Date.value = e.target.value));
-	$('#Employment_1 .Company').change(e => (applicationForm.Employment[0].Company.value = e.target.value));
-	$('#Employment_1 .Title').change(e => (applicationForm.Employment[0].Title.value = e.target.value));
+	// $('#Name_Zh').change(e => (applicationForm.Name_Zh.value = e.target.value));
+	// $('#Name_En').change(e => (applicationForm.Name_En.value = e.target.value));
+	// $('#Birth_Date').change(e => (applicationForm.Birth_Date.value = e.target.value));
+	// $('#Gender').change(e => (applicationForm.Gender.value = e.target.value));
+	// $('#Email').change(e => (applicationForm.Email.value = e.target.value));
+	// $('#Employment_1 .From_Date').change(e => (applicationForm.Employment[0].From_Date.value = e.target.value));
+	// $('#Employment_1 .To_Date').change(e => (applicationForm.Employment[0].To_Date.value = e.target.value));
+	// $('#Employment_1 .Company').change(e => (applicationForm.Employment[0].Company.value = e.target.value));
+	// $('#Employment_1 .Title').change(e => (applicationForm.Employment[0].Title.value = e.target.value));
 
 	// File Uploader & Submit API
 	let avatarPreview;
