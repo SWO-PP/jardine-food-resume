@@ -649,15 +649,69 @@ $(document).ready(function () {
 		Physical_Dysfunction: { value: '', valid: true, error: '' },
 		Disabled_Employment: { value: '', valid: true, error: '' },
 	};
-	// $('#Name_Zh').change(e => (applicationForm.Name_Zh.value = e.target.value));
-	// $('#Name_En').change(e => (applicationForm.Name_En.value = e.target.value));
-	// $('#Birth_Date').change(e => (applicationForm.Birth_Date.value = e.target.value));
-	// $('#Gender').change(e => (applicationForm.Gender.value = e.target.value));
-	// $('#Email').change(e => (applicationForm.Email.value = e.target.value));
-	// $('#Employment_1 .From_Date').change(e => (applicationForm.Employment[0].From_Date.value = e.target.value));
-	// $('#Employment_1 .To_Date').change(e => (applicationForm.Employment[0].To_Date.value = e.target.value));
-	// $('#Employment_1 .Company').change(e => (applicationForm.Employment[0].Company.value = e.target.value));
-	// $('#Employment_1 .Title').change(e => (applicationForm.Employment[0].Title.value = e.target.value));
+
+	const handleOnChange = ({ key, order, subKey = [], type = 'text' }) => {
+		if (type === 'text') {
+			$(`#${key}`).change(e => (applicationForm[key].value = e.target.value));
+		} else if (type === 'array') {
+			subKey.forEach(_key => {
+				$(`#${key}_${order} .${_key}`).change(
+					e => (applicationForm[key][applicationForm[key].length - 1][_key].value = e.target.value)
+				);
+			});
+		} else if (type === 'radio') {
+			$(`#${key} input[name=${key}_Option]`).change(e => (applicationForm[key].value = e.target.value));
+		}
+	};
+
+	(function () {
+		handleOnChange({ key: 'Position' });
+		handleOnChange({ key: 'Chinese_Name' });
+		handleOnChange({ key: 'English_Name' });
+		handleOnChange({ key: 'Birthday' });
+		handleOnChange({ key: 'Gender' });
+		handleOnChange({ key: 'Nationality' });
+		handleOnChange({ key: 'Personal_ID' });
+		handleOnChange({ key: 'Resident_Certificate_No' });
+		handleOnChange({ key: 'Resident_Certificate_Effective_Date' });
+		handleOnChange({ key: 'Work_Permit_Certificate_No' });
+		handleOnChange({ key: 'Work_Permit_Certificate_Effective_Date' });
+		handleOnChange({ key: 'Email' });
+		handleOnChange({ key: 'Mobile_Phone' });
+		handleOnChange({ key: 'Contact_Address' });
+		handleOnChange({ key: 'Residence_Address' });
+		handleOnChange({ key: 'Driving_License' });
+		handleOnChange({ key: 'Recruiting_Source' });
+		handleOnChange({
+			key: 'Educational_Level',
+			order: 1,
+			subKey: ['Level', 'School_Name', 'Major_Subject', 'Start_Date', 'End_Date', 'Status'],
+			type: 'array',
+		});
+		handleOnChange({
+			key: 'Job_Experience',
+			order: 1,
+			subKey: ['Position', 'Company_Name', 'Start_Date', 'End_Date'],
+			type: 'array',
+		});
+		handleOnChange({
+			key: 'Language_Skill',
+			order: 1,
+			subKey: ['Language', 'Listen', 'Read', 'Write', 'Speak'],
+			type: 'array',
+		});
+		handleOnChange({
+			key: 'Recommender',
+			order: 1,
+			subKey: ['Name', 'Phone', 'Company_Name', 'Relationship'],
+			type: 'array',
+		});
+		handleOnChange({ key: 'Available_Time' });
+		handleOnChange({ key: 'License' });
+		handleOnChange({ key: 'Family_Survey' });
+		handleOnChange({ key: 'Physical_Dysfunction' });
+		handleOnChange({ key: 'Disabled_Employment', type: 'radio' });
+	})();
 
 	// File Uploader & Submit API
 	let avatarPreview;
@@ -819,6 +873,7 @@ $(document).ready(function () {
 		};
 	};
 
+	$('#submit-form-btn').click(() => console.log('applicationForm', applicationForm));
 	// Submit
 	$('#submit-btn').click(async () => {
 		let errorStatus = false;
@@ -874,96 +929,379 @@ $(document).ready(function () {
 		}
 	});
 
-	// Add Job Experience Item
-	let counter = 1; // Increment Employment Id
-	$('#add-job-btn').click(function () {
-		const { length } = $('#Employment_Container').children().slice(0, -1);
-		const nextChildId = ++counter;
+	function initializeChildTable({ btnName = '', keyName = '', childKeyList = [], childComponent = () => {} }) {
+		let counter = 1;
+		$(`#add-${btnName}-btn`).click(function () {
+			const { length } = $(`#${keyName}_Container`).children().slice(0, -1);
+			const nextChildId = ++counter;
 
-		// Subtract Submit Button
-		if (length === 4) {
-			return;
+			// Subtract Submit Button
+			if (length === 4) {
+				return;
+			}
+
+			let divBody = childComponent(nextChildId);
+			divBody.insertBefore($(`#add-${btnName}-btn`));
+			$(`#${keyName}_${nextChildId} .remove-${btnName}-btn`).click(removeItem);
+
+			// Modify Form
+			const newItem = {};
+			childKeyList.forEach(_key => {
+				newItem[_key] = { value: '', valid: true, error: '' };
+				$(`#${keyName}_${nextChildId} .${_key}`).change(
+					e => (applicationForm[keyName][length][_key].value = e.target.value)
+				);
+			});
+			applicationForm[keyName] = [...applicationForm[keyName], newItem];
+
+			// Update Placeholder
+			rerender();
+		});
+
+		function removeItem() {
+			const id = $(this).attr('data-id');
+			const idx = $($(this).parent()).index();
+			$(`#${keyName}_${id}`).remove();
+
+			// Modify Form
+			applicationForm[keyName] = [
+				...applicationForm[keyName].slice(0, idx),
+				...applicationForm[keyName].slice(idx + 1),
+			];
+
+			// Reorder Order Number
+			const childrens = $(`#${keyName}_Container`).children().slice(0, -1);
+			childrens.each(function (idx) {
+				$(this)
+					.find('> span:first-child')
+					.html(idx + 1);
+			});
 		}
 
-		let divBody = $(
-			`<div class="flex flex-col md:flex-row items-stretch gap-6" id="Employment_${nextChildId}">
-				<span class="bg-gray-200 leading-none rounded p-2 md:mb-1.5 md:mt-8 self-start">${length + 1}</span>
-				<label class="block flex-1">
-					<span class="text-gray-700">開始任職</span>
-					<input type="date"
-						class="From_Date form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-					<span class="From_Date_Error -bottom-6 text-red-500"></span>
-				</label>
-				<label class="block flex-1">
-					<span class="text-gray-700">結束任職</span>
-					<input type="date"
-						class="To_Date form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-					<span class="To_Date_Error -bottom-6 text-red-500"></span>
-				</label>
-				<label class="block flex-1">
-					<span class="text-gray-700">公司名稱</span>
-					<input type="text"
-						class="Company form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-					<span class="Company_Error -bottom-6 text-red-500"></span>
-				</label>
-				<label class="block flex-1">
-					<span class="text-gray-700">工作職稱</span>
-					<input type="text"
-						class="Title form-input mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-					<span class="Title_Error -bottom-6 text-red-500"></span>
-				</label>
-				<svg data-id="${nextChildId}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-					stroke-width="1.5" stroke="currentColor" class="remove-job-btn w-6 h-6 stroke-2 md:mt-9">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-				</svg>
-			</div>`
-		);
-		divBody.insertBefore($('#add-job-btn'));
-		$(`#Employment_${nextChildId} .remove-job-btn`).click(removeJob);
-
-		// Modify Form
-		applicationForm.Employment = [
-			...applicationForm.Employment,
-			{
-				From_Date: { value: '', valid: true, error: '' },
-				To_Date: { value: '', valid: true, error: '' },
-				Company: { value: '', valid: true, error: '' },
-				Title: { value: '', valid: true, error: '' },
-			},
-		];
-		$(`#Employment_${nextChildId} .From_Date`).change(
-			e => (applicationForm.Employment[length].From_Date.value = e.target.value)
-		);
-		$(`#Employment_${nextChildId} .To_Date`).change(
-			e => (applicationForm.Employment[length].To_Date.value = e.target.value)
-		);
-		$(`#Employment_${nextChildId} .Company`).change(
-			e => (applicationForm.Employment[length].Company.value = e.target.value)
-		);
-		$(`#Employment_${nextChildId} .Title`).change(
-			e => (applicationForm.Employment[length].Title.value = e.target.value)
-		);
-	});
-
-	function removeJob() {
-		const id = $(this).attr('data-id');
-		const idx = $($(this).parent()).index();
-		$(`#Employment_${id}`).remove();
-
-		// Modify Form
-		applicationForm.Employment = [
-			...applicationForm.Employment.slice(0, idx),
-			...applicationForm.Employment.slice(idx + 1),
-		];
-
-		// Reorder Order Number
-		const childrens = $('#Employment_Container').children().slice(0, -1);
-		childrens.each(function (idx) {
-			$(this)
-				.find('> span:first-child')
-				.html(idx + 1);
-		});
+		$(`#${keyName}_1 .remove-${btnName}-btn`).click(removeItem);
 	}
 
-	$('#Employment_1 .remove-job-btn').click(removeJob);
+	/*
+	 *	The following section is the functions of the Educational Level,
+	 *	including adding and removing functions.
+	 */
+	initializeChildTable({
+		btnName: 'educational-level',
+		keyName: 'Educational_Level',
+		childComponent: nextChildId =>
+			$(`
+				<div class="flex items-center gap-8 border-b border-light-gray" id="Educational_Level_${nextChildId}">
+					<div class="flex-1 grid grid-cols-10 gap-x-8 gap-y-4 pb-8">
+						<label class="flex flex-col gap-2 col-span-2">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="educational-level.level.title"></span>
+							</div>
+							<select
+								class="Level form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+								<option hidden disabled selected value
+									data-i18n="educational-level.level.placeholder">
+								</option>
+								<option value="elementary-school" data-i18n="educational-level.level.option-1">
+								</option>
+								<option value="junior-high-school" data-i18n="educational-level.level.option-2">
+								</option>
+								<option value="senior-high-school" data-i18n="educational-level.level.option-3">
+								</option>
+								<option value="college-university" data-i18n="educational-level.level.option-4">
+								</option>
+								<option value="graduate-school" data-i18n="educational-level.level.option-5">
+								</option>
+							</select>
+							<span class="Level_Error -bottom-6 text-jardin-red"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-4">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="educational-level.school-name.title"></span>
+							</div>
+							<input type="text"
+								class="School_Name block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+								name="School_Name">
+							<span class="School_Name_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-4">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="educational-level.major-subject.title"></span>
+							</div>
+							<input type="text"
+								class="Major_Subject block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+								name="Major_Subject">
+							<span class="Major_Subject_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-4">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="educational-level.start-date.title"></span>
+							</div>
+							<input type="date"
+								class="Start_Date form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer">
+						</label>
+						<label class="flex flex-col gap-2 col-span-4">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="educational-level.end-date.title"></span>
+							</div>
+							<input type="date"
+								class="End_Date form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer">
+						</label>
+						<label class="flex flex-col gap-2 col-span-2">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="educational-level.status.title"></span>
+							</div>
+							<select
+								class="Status form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+								<option hidden disabled selected value
+									data-i18n="educational-level.status.placeholder">
+								</option>
+								<option value="graduated" data-i18n="educational-level.status.option-1">
+								</option>
+								<option value="dropped-out" data-i18n="educational-level.status.option-2">
+								</option>
+								<option value="in-school" data-i18n="educational-level.status.option-3">
+								</option>
+							</select>
+							<span class="Status_Error -bottom-6 text-jardin-red"></span>
+						</label>
+					</div>
+					<svg data-id="${nextChildId}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+						stroke-width="1.5" stroke="currentColor"
+						class="remove-educational-level-btn w-6 h-6 stroke-2 cursor-pointer">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+					</svg>
+				</div>
+			`),
+	});
+
+	/*
+	 *	The following section is the functions of the Job Experience,
+	 *	including adding and removing functions.
+	 */
+	initializeChildTable({
+		btnName: 'job-experience',
+		keyName: 'Job_Experience',
+		childComponent: nextChildId =>
+			$(`
+				<div class="flex items-center gap-8 border-b border-light-gray" id="Job_Experience_${nextChildId}">
+					<div class="flex-1 grid grid-cols-2 gap-x-8 gap-y-4 pb-8">
+						<label class="flex flex-col gap-2 col-span-1">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="job-experience.position.title"></span>
+							</div>
+							<input type="text"
+								class="Position block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+								name="Position">
+							<span class="Position_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-1">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="job-experience.company-name.title"></span>
+							</div>
+							<input type="text"
+								class="Company_Name block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+								name="Company_Name">
+							<span class="Company_Name_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-1">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="job-experience.start-date.title"></span>
+							</div>
+							<input type="date"
+								class="Start_Date form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer">
+						</label>
+						<label class="flex flex-col gap-2 col-span-1">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="job-experience.end-date.title"></span>
+							</div>
+							<input type="date"
+								class="End_Date form-input block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3 cursor-pointer">
+						</label>
+					</div>
+					<svg data-id="${nextChildId}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+						stroke-width="1.5" stroke="currentColor"
+						class="remove-job-experience-btn w-6 h-6 stroke-2 cursor-pointer">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+					</svg>
+				</div>
+			`),
+	});
+
+	/*
+	 *	The following section is the functions of the Language Skill,
+	 *	including adding and removing functions.
+	 */
+	initializeChildTable({
+		btnName: 'language-skill',
+		keyName: 'Language_Skill',
+		childComponent: nextChildId =>
+			$(`
+				<div class="flex items-center gap-8 border-b border-light-gray" id="Language_Skill_${nextChildId}">
+					<div class="flex-1 grid grid-cols-10 gap-x-8 gap-y-4 pb-8">
+						<label class="flex flex-col gap-2 col-span-2">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="language-skill.language.title"></span>
+							</div>
+							<input type="text"
+								class="Language block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+								name="Language">
+							<span class="Language_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-2">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="language-skill.listen.title"></span>
+							</div>
+							<select id="Listen"
+								class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+								<option hidden disabled selected value
+									data-i18n="language-skill.option.placeholder">
+								</option>
+								<option value="proficient" data-i18n="language-skill.option.option-1">
+								</option>
+								<option value="intermediate" data-i18n="language-skill.option.option-2">
+								</option>
+								<option value="understandable" data-i18n="language-skill.option.option-3">
+								</option>
+							</select>
+							<span class="Listen_Error -bottom-6 text-jardin-red"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-2">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="language-skill.read.title"></span>
+							</div>
+							<select id="Read"
+								class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+								<option hidden disabled selected value
+									data-i18n="language-skill.option.placeholder">
+								</option>
+								<option value="proficient" data-i18n="language-skill.option.option-1">
+								</option>
+								<option value="intermediate" data-i18n="language-skill.option.option-2">
+								</option>
+								<option value="understandable" data-i18n="language-skill.option.option-3">
+								</option>
+							</select>
+							<span class="Read_Error -bottom-6 text-jardin-red"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-2">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="language-skill.write.title"></span>
+							</div>
+							<select id="Write"
+								class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+								<option hidden disabled selected value
+									data-i18n="language-skill.option.placeholder">
+								</option>
+								<option value="proficient" data-i18n="language-skill.option.option-1">
+								</option>
+								<option value="intermediate" data-i18n="language-skill.option.option-2">
+								</option>
+								<option value="understandable" data-i18n="language-skill.option.option-3">
+								</option>
+							</select>
+							<span class="Write_Error -bottom-6 text-jardin-red"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-2">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="language-skill.speak.title"></span>
+							</div>
+							<select id="Speak"
+								class="form-select w-full rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3">
+								<option hidden disabled selected value
+									data-i18n="language-skill.option.placeholder">
+								</option>
+								<option value="proficient" data-i18n="language-skill.option.option-1">
+								</option>
+								<option value="intermediate" data-i18n="language-skill.option.option-2">
+								</option>
+								<option value="understandable" data-i18n="language-skill.option.option-3">
+								</option>
+							</select>
+							<span class="Speak_Error -bottom-6 text-jardin-red"></span>
+						</label>
+					</div>
+					<svg data-id="${nextChildId}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+						stroke-width="1.5" stroke="currentColor"
+						class="remove-language-skill-btn w-6 h-6 stroke-2 cursor-pointer">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+					</svg>
+				</div>
+			`),
+	});
+
+	/*
+	 *	The following section is the functions of the Recommender,
+	 *	including adding and removing functions.
+	 */
+	initializeChildTable({
+		btnName: 'recommender',
+		keyName: 'Recommender',
+		childComponent: nextChildId =>
+			$(`
+				<div class="flex items-center gap-8 border-b border-light-gray" id="Recommender_${nextChildId}">
+					<div class="flex-1 grid grid-cols-5 gap-x-8 gap-y-4 pb-8">
+						<label class="flex flex-col gap-2 col-span-1">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="recommender.name.title"></span>
+							</div>
+							<input type="text"
+								class="Name block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+								name="Name">
+							<span class="Name_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-1">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="recommender.phone.title"></span>
+							</div>
+							<input type="text"
+								class="Phone block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+								name="Phone">
+							<span class="Phone_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-2">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="recommender.company-name.title"></span>
+							</div>
+							<input type="text"
+								class="Company_Name block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+								name="Company_Name">
+							<span class="Company_Name_Error -bottom-6 text-red-500"></span>
+						</label>
+						<label class="flex flex-col gap-2 col-span-1">
+							<div class="flex">
+								<span class="text-dark-gray text-base"
+									data-i18n="recommender.relationship.title"></span>
+							</div>
+							<input type="text"
+								class="Relationship block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
+								name="Relationship">
+							<span class="Relationship_Error -bottom-6 text-red-500"></span>
+						</label>
+					</div>
+					<svg data-id="${nextChildId}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+						stroke-width="1.5" stroke="currentColor"
+						class="remove-recommender-btn w-6 h-6 stroke-2 cursor-pointer">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+					</svg>
+				</div>
+			`),
+	});
 });

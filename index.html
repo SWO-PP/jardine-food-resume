@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+	<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
 	<script>
 		tailwind.config = {
 			theme: {
@@ -80,7 +80,7 @@
 						</div>
 						<input type="text"
 							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-							id=Chinese_Name" name="Chinese_Name">
+							id="Chinese_Name" name="Chinese_Name">
 					</label>
 					<label class="flex flex-col gap-2">
 						<div class="flex">
@@ -90,7 +90,7 @@
 						</div>
 						<input type="text"
 							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-							id=English_Name" name="English_Name">
+							id="English_Name" name="English_Name">
 					</label>
 					<label class="flex flex-col gap-2">
 						<div class="flex">
@@ -121,7 +121,7 @@
 							<span class="text-dark-gray text-base"
 								data-i18n="basic-information.nationality.title"></span>
 						</div>
-						<div class="flex flex-row gap-8">
+						<div class="flex flex-row gap-8" id="Nationality">
 							<label class="flex items-center">
 								<input type="radio"
 									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
@@ -151,7 +151,7 @@
 						</div>
 						<input type="text"
 							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-							id=Personal_ID" name="Personal_ID">
+							id="Personal_ID" name="Personal_ID">
 					</label>
 					<label class="flex flex-col gap-2">
 						<div class="flex">
@@ -181,7 +181,7 @@
 						</div>
 						<input type="text"
 							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-							id=Work_Permit_Certificate_No" name="Work_Permit_Certificate_No">
+							id="Work_Permit_Certificate_No" name="Work_Permit_Certificate_No">
 					</label>
 					<label class="flex flex-col gap-2">
 						<div class="flex">
@@ -200,7 +200,7 @@
 						</div>
 						<input type="email"
 							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-							id=Email" name="Email">
+							id="Email" name="Email">
 					</label>
 					<label class="flex flex-col gap-2">
 						<div class="flex">
@@ -210,7 +210,7 @@
 						</div>
 						<input type="text"
 							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-							id=Mobile_Phone" name="Mobile_Phone">
+							id="Mobile_Phone" name="Mobile_Phone">
 					</label>
 					<label class="flex flex-col gap-2 col-span-2">
 						<div class="flex">
@@ -220,7 +220,7 @@
 						</div>
 						<input type="text"
 							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-							id=Contact_Address" name="Contact_Address">
+							id="Contact_Address" name="Contact_Address">
 					</label>
 					<label class="flex flex-col gap-2 col-span-2">
 						<div class="flex">
@@ -237,7 +237,7 @@
 						</div>
 						<input type="text"
 							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-							id=Residence_Address" name="Residence_Address">
+							id="Residence_Address" name="Residence_Address">
 					</label>
 					<fieldset class="flex flex-col gap-2 col-span-2">
 						<div class="flex">
@@ -665,7 +665,7 @@
 						</div>
 						<input type="text"
 							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-							id=Available_Time" name="Available_Time">
+							id="Available_Time" name="Available_Time">
 					</label>
 					<label class="flex flex-col gap-2">
 						<div class="flex">
@@ -674,7 +674,7 @@
 						</div>
 						<input type="text"
 							class="block w-full placeholder:text-gray rounded-md bg-gray-white border-transparent focus:border-gray-white focus:bg-white focus:ring-0 text-base px-4 py-3"
-							id=License" name="License">
+							id="License" name="License">
 					</label>
 					<fieldset class="flex flex-col gap-2">
 						<div class="flex">
@@ -682,7 +682,7 @@
 							<span class="text-dark-gray text-base"
 								data-i18n="other-information.family-survey.title"></span>
 						</div>
-						<div class="flex flex-row gap-8 h-12">
+						<div class="flex flex-row gap-8 h-12" id="Family_Survey">
 							<label class="flex items-center">
 								<input type="radio"
 									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
@@ -705,7 +705,7 @@
 							<span class="text-dark-gray text-base"
 								data-i18n="other-information.physical-dysfunction.title"></span>
 						</div>
-						<div class="flex flex-row gap-8 h-12">
+						<div class="flex flex-row gap-8 h-12" id="Physical_Dysfunction">
 							<label class="flex items-center">
 								<input type="radio"
 									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
@@ -728,7 +728,7 @@
 							<span class="text-dark-gray text-base"
 								data-i18n="other-information.disabled-employment.title"></span>
 						</div>
-						<div class="flex flex-row gap-8 h-12">
+						<div class="flex flex-row gap-8 h-12" id="Disabled_Employment">
 							<label class="flex items-center">
 								<input type="radio"
 									class="form-radio rounded-full bg-gray-white border-transparent text-dark-gray focus:border-transparent focus:bg-gray-white focus:ring-1 focus:ring-offset-2 focus:ring-dark-gray"
