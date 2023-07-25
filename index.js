@@ -715,43 +715,100 @@ $(document).ready(function () {
 
 	// File Uploader & Submit API
 	let avatarPreview;
-	let attachmentPreview;
 
 	const postApplication = async () => {
-		// const applicationUrl =
-		// 	'https://prod-43.southeastasia.logic.azure.com/workflows/9678e0dde2b64671b83d4e7e4fcfd054/triggers/manual/paths/invoke/application?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=y1RMcXk4t7PSjpxEoZmNnqWw7KbayA83gfIIv0lWVmo';
+		console.log('applicationForm', applicationForm);
+		const applicationUrl =
+			'https://prod-10.southeastasia.logic.azure.com/workflows/bf73a6c4817c4d639f9e83cdf50915bc/triggers/manual/paths/invoke/application?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=sOVRaWpb4ZWO5VVEvsFrFpVTzDe2XXmZE63Ft9OZmuo';
 		try {
-			const Application_SN = `AP-${dayjs().format('YYYYMMDDHHmmss')}`;
-			const Employment_SN = `EM-${dayjs().format('YYYYMMDDHHmmss')}`;
-			let body = {
-				// Form
-				Name_Zh: applicationForm.Name_Zh.value,
-				Name_En: applicationForm.Name_En.value,
-				Birth_Date: applicationForm.Birth_Date.value,
-				Gender: applicationForm.Gender.value,
-				Email: applicationForm.Email.value,
-				Employment: applicationForm.Employment.map(data => ({
-					...data,
-					Employment_SN,
-					Application_SN,
-				})),
-				// Other
-				Shop_ID,
-				Application_SN,
-				Avatar: avatarPreview.content,
-				Attachment: attachmentPreview,
-			};
-			console.log(body);
+			const Hire_Main_Table_SN = `HM-${dayjs().format('YYYYMMDDHHmmss')}`;
+			const Hire_Education_Form_SN = `HE-${dayjs().format('YYYYMMDDHHmmss')}`;
+			const Hire_Work_Experience_Form_SN = `HWE-${dayjs().format('YYYYMMDDHHmmss')}`;
+			const Hire_Langauge_SN = `HL-${dayjs().format('YYYYMMDDHHmmss')}`;
+			const Hire_Recommander_SN = `HR-${dayjs().format('YYYYMMDDHHmmss')}`;
 
-			// let response = fetch(applicationUrl, {
-			// 	body: JSON.stringify(body),
-			// 	headers: {
-			// 		'user-agent': 'Mozilla/4.0 MDN Example',
-			// 		'content-type': 'application/json',
-			// 	},
-			// 	method: 'POST',
-			// });
-			// console.log(response);
+			let body = {
+				// System
+				Application_SN: '',
+				Form_List_SN: '',
+				Flow_SN: '',
+				Form_List: '',
+				Form: '',
+
+				// Form
+				Position: applicationForm.Position.value,
+				Store_Name: Shop_ID,
+				Chinese_Name: applicationForm.Chinese_Name.value,
+				English_Name: applicationForm.English_Name.value,
+				Birthday: applicationForm.Birthday.value,
+				Gender: applicationForm.Gender.value,
+				Nationality: applicationForm.Nationality.value,
+				Personal_ID: applicationForm.Personal_ID.value,
+				Residence_Card_Number: applicationForm.Resident_Certificate_No.value,
+				Residence_Valid_Date: applicationForm.Resident_Certificate_Effective_Date.value,
+				Work_ID: applicationForm.Work_Permit_Certificate_No.value,
+				Work_Valid_Date: applicationForm.Work_Permit_Certificate_Effective_Date.value,
+				CellPhone_Number: applicationForm.Mobile_Phone.value,
+				Email: applicationForm.Email.value,
+				Mailing_Address: applicationForm.Contact_Address.value,
+				Residence_Address: applicationForm.Residence_Address.value,
+				Car_License: applicationForm.Driving_License.value,
+				Other_License: applicationForm.License.value,
+				Working_Relative: applicationForm.Family_Survey.value,
+				Disabled: applicationForm.Physical_Dysfunction.value,
+				Disabled_Applyment: applicationForm.Disabled_Employment.value,
+				Recruiting_Source: applicationForm.Recruiting_Source.value,
+
+				// Children
+				Educational_Level: applicationForm.Educational_Level.map(data => ({
+					Hire_Education_Form_SN,
+					Hire_Main_Table_SN,
+					Grade: data.Level.value,
+					School_Name: data.School_Name.value,
+					Major: data.Major_Subject.value,
+					StartDate: data.Start_Date.value,
+					EndDate: data.End_Date.value,
+					Graduated: data.Status.value,
+				})),
+				Job_Experience: applicationForm.Job_Experience.map(data => ({
+					Hire_Work_Experience_Form_SN,
+					Hire_Main_Table_SN,
+					Job_Title: data.Position.value,
+					Name_Of_Org: data.Company_Name.value,
+					StartDate: data.Start_Date.value,
+					EndDate: data.End_Date.value,
+				})),
+				Language_Skill: applicationForm.Language_Skill.map(data => ({
+					Hire_Langauge_SN,
+					Hire_Main_Table_SN,
+					Language: data.Language.value,
+					Listen: data.Listen.value,
+					Read: data.Read.value,
+					Write: data.Write.value,
+					Speak: data.Speak.value,
+				})),
+				Recommender: applicationForm.Recommender.map(data => ({
+					Hire_Recommander_SN,
+					Hire_Main_Table_SN,
+					Name: data.Name.value,
+					Phone: data.Phone.value,
+					Company_Name: data.Company_Name.value,
+					Relationship: data.Relationship.value,
+				})),
+
+				// Other
+				Profile: avatarPreview.content,
+			};
+
+			let response = fetch(applicationUrl, {
+				body: JSON.stringify(body),
+				headers: {
+					'user-agent': 'Mozilla/4.0 MDN Example',
+					'content-type': 'application/json',
+				},
+				method: 'POST',
+			});
+			console.log(response);
 		} catch (error) {
 			console.log(`Error: ${error}`);
 		}
@@ -775,26 +832,6 @@ $(document).ready(function () {
 			console.error(e.target.error);
 		};
 		avatarReader.readAsDataURL(file.prop('files')[0]);
-	});
-
-	$('#Attachment').on('change', function () {
-		let file = $(this);
-		let attachmentReader = new FileReader();
-		attachmentReader.onload = function (e) {
-			attachmentPreview = {
-				name: file.prop('files')[0].name,
-				'content-type': file.prop('files')[0].type,
-				content: e.target.result.split(',').pop(),
-			};
-			console.log(attachmentPreview);
-		};
-		attachmentReader.onloadend = function (e) {
-			console.log(e.target.result);
-		};
-		attachmentReader.onerror = function (e) {
-			console.error(e.target.error);
-		};
-		attachmentReader.readAsDataURL(file.prop('files')[0]);
 	});
 
 	// Clear Form Error
@@ -873,60 +910,58 @@ $(document).ready(function () {
 		};
 	};
 
-	$('#submit-form-btn').click(() => console.log('applicationForm', applicationForm));
 	// Submit
-	$('#submit-btn').click(async () => {
+	$('#submit-form-btn').click(async () => {
 		let errorStatus = false;
 		const avatar = $('#Avatar').prop('files')[0];
-		const attachment = $('#Attachment').prop('files')[0];
 
-		// Clear Validation
-		applicationForm = clearFormError(applicationForm);
+		// // Clear Validation
+		// applicationForm = clearFormError(applicationForm);
 
-		// Validate
-		const validateData = examFormData(applicationForm);
-		console.log('validateData', validateData);
-		if (!validateData.value) {
-			validateData.notValid.forEach(key => {
-				applicationForm[key].valid = false;
-				applicationForm[key].error = '此欄位不得空白';
-				$(`#${key}`).addClass('border-red-500');
-				$(`#${key}_Error`).html(applicationForm[key].error);
-			});
-			errorStatus = true;
-		}
-		if (!validateData.employmentValue) {
-			validateData.employmentNotValid.forEach((emp, idx) => {
-				console.log(emp, idx);
-				emp.forEach(key => {
-					console.log(key);
-					applicationForm.Employment[idx][key].valid = false;
-					applicationForm.Employment[idx][key].error = '此欄位不得空白';
-					$(`#Employment_Container > div:nth-child(${idx + 1}) .${key}`).addClass('border-red-500');
-					$(`#Employment_Container > div:nth-child(${idx + 1}) .${key}_Error`).html(
-						applicationForm.Employment[idx][key].error
-					);
-				});
-			});
-		}
+		// // Validate
+		// const validateData = examFormData(applicationForm);
+		// console.log('validateData', validateData);
+		// if (!validateData.value) {
+		// 	validateData.notValid.forEach(key => {
+		// 		applicationForm[key].valid = false;
+		// 		applicationForm[key].error = '此欄位不得空白';
+		// 		$(`#${key}`).addClass('border-red-500');
+		// 		$(`#${key}_Error`).html(applicationForm[key].error);
+		// 	});
+		// 	errorStatus = true;
+		// }
+		// if (!validateData.employmentValue) {
+		// 	validateData.employmentNotValid.forEach((emp, idx) => {
+		// 		console.log(emp, idx);
+		// 		emp.forEach(key => {
+		// 			console.log(key);
+		// 			applicationForm.Employment[idx][key].valid = false;
+		// 			applicationForm.Employment[idx][key].error = '此欄位不得空白';
+		// 			$(`#Employment_Container > div:nth-child(${idx + 1}) .${key}`).addClass('border-red-500');
+		// 			$(`#Employment_Container > div:nth-child(${idx + 1}) .${key}_Error`).html(
+		// 				applicationForm.Employment[idx][key].error
+		// 			);
+		// 		});
+		// 	});
+		// }
 
-		const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-		if (!emailRegex.test(applicationForm.Email.value)) {
-			applicationForm.Email.valid = false;
-			applicationForm.Email.error = '此欄位格式有誤';
-			$('#Email').addClass('border-red-500');
-			$('#Email_Error').html(applicationForm.Email.error);
+		// const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+		// if (!emailRegex.test(applicationForm.Email.value)) {
+		// 	applicationForm.Email.valid = false;
+		// 	applicationForm.Email.error = '此欄位格式有誤';
+		// 	$('#Email').addClass('border-red-500');
+		// 	$('#Email_Error').html(applicationForm.Email.error);
 
-			errorStatus = true;
-		}
+		// 	errorStatus = true;
+		// }
 
 		if (errorStatus) {
 			return;
 		}
 
-		if (avatar && attachment) {
-			await postApplication();
-		}
+		// if (avatar) {
+		await postApplication();
+		// }
 	});
 
 	function initializeChildTable({ btnName = '', keyName = '', childKeyList = [], childComponent = () => {} }) {
@@ -988,6 +1023,7 @@ $(document).ready(function () {
 	initializeChildTable({
 		btnName: 'educational-level',
 		keyName: 'Educational_Level',
+		childKeyList: ['Level', 'School_Name', 'Major_Subject', 'Start_Date', 'End_Date', 'Status'],
 		childComponent: nextChildId =>
 			$(`
 				<div class="flex items-center gap-8 border-b border-light-gray" id="Educational_Level_${nextChildId}">
@@ -1087,6 +1123,7 @@ $(document).ready(function () {
 	initializeChildTable({
 		btnName: 'job-experience',
 		keyName: 'Job_Experience',
+		childKeyList: ['Job_Title', 'Name_Of_Org', 'StartDate', 'EndDate'],
 		childComponent: nextChildId =>
 			$(`
 				<div class="flex items-center gap-8 border-b border-light-gray" id="Job_Experience_${nextChildId}">
@@ -1144,6 +1181,7 @@ $(document).ready(function () {
 	initializeChildTable({
 		btnName: 'language-skill',
 		keyName: 'Language_Skill',
+		childKeyList: ['Language', 'Listen', 'Read', 'Write', 'Speak'],
 		childComponent: nextChildId =>
 			$(`
 				<div class="flex items-center gap-8 border-b border-light-gray" id="Language_Skill_${nextChildId}">
@@ -1251,6 +1289,7 @@ $(document).ready(function () {
 	initializeChildTable({
 		btnName: 'recommender',
 		keyName: 'Recommender',
+		childKeyList: ['Name', 'Phone', 'Company_Name', 'Relationship'],
 		childComponent: nextChildId =>
 			$(`
 				<div class="flex items-center gap-8 border-b border-light-gray" id="Recommender_${nextChildId}">
