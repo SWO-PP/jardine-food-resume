@@ -585,8 +585,8 @@ $(document).ready(function () {
 		}
 	};
 
-	const Shop_ID = getQueryVariable('shop_id');
-	$('#Shop_ID').val(Shop_ID);
+	const Shop_ID = getQueryVariable('shop_id') || '';
+	// $('#Shop_ID').val(Shop_ID);
 	// $('#Today').html(dayjs().format('YYYY/MM/DD'));
 
 	// Init Form Value
@@ -729,7 +729,7 @@ $(document).ready(function () {
 
 			let body = {
 				// System
-				Application_SN: '',
+				Hire_Main_Table_SN,
 				Form_List_SN: '',
 				Flow_SN: '',
 				Form_List: '',
@@ -742,7 +742,10 @@ $(document).ready(function () {
 				English_Name: applicationForm.English_Name.value,
 				Birthday: applicationForm.Birthday.value,
 				Gender: applicationForm.Gender.value,
-				Nationality: applicationForm.Nationality.value,
+				Nationality:
+					applicationForm.Nationality.value === 'Other'
+						? $('#Nationality_Other').val()
+						: applicationForm.Nationality.value,
 				Personal_ID: applicationForm.Personal_ID.value,
 				Residence_Card_Number: applicationForm.Resident_Certificate_No.value,
 				Residence_Valid_Date: applicationForm.Resident_Certificate_Effective_Date.value,
@@ -797,18 +800,18 @@ $(document).ready(function () {
 				})),
 
 				// Other
-				Profile: avatarPreview.content,
+				Profile: avatarPreview?.content,
 			};
-
-			let response = fetch(applicationUrl, {
-				body: JSON.stringify(body),
-				headers: {
-					'user-agent': 'Mozilla/4.0 MDN Example',
-					'content-type': 'application/json',
-				},
-				method: 'POST',
-			});
-			console.log(response);
+			console.log(body);
+			// let response = fetch(applicationUrl, {
+			// 	body: JSON.stringify(body),
+			// 	headers: {
+			// 		'user-agent': 'Mozilla/4.0 MDN Example',
+			// 		'content-type': 'application/json',
+			// 	},
+			// 	method: 'POST',
+			// });
+			// console.log(response);
 		} catch (error) {
 			console.log(`Error: ${error}`);
 		}
@@ -1038,15 +1041,15 @@ $(document).ready(function () {
 								<option hidden disabled selected value
 									data-i18n="educational-level.level.placeholder">
 								</option>
-								<option value="elementary-school" data-i18n="educational-level.level.option-1">
+								<option value="國小" data-i18n="educational-level.level.option-1">
 								</option>
-								<option value="junior-high-school" data-i18n="educational-level.level.option-2">
+								<option value="國中" data-i18n="educational-level.level.option-2">
 								</option>
-								<option value="senior-high-school" data-i18n="educational-level.level.option-3">
+								<option value="高中" data-i18n="educational-level.level.option-3">
 								</option>
-								<option value="college-university" data-i18n="educational-level.level.option-4">
+								<option value="大學" data-i18n="educational-level.level.option-4">
 								</option>
-								<option value="graduate-school" data-i18n="educational-level.level.option-5">
+								<option value="研究所" data-i18n="educational-level.level.option-5">
 								</option>
 							</select>
 							<span class="Level_Error -bottom-6 text-jardin-red"></span>
@@ -1097,11 +1100,11 @@ $(document).ready(function () {
 								<option hidden disabled selected value
 									data-i18n="educational-level.status.placeholder">
 								</option>
-								<option value="graduated" data-i18n="educational-level.status.option-1">
+								<option value="畢業" data-i18n="educational-level.status.option-1">
 								</option>
-								<option value="dropped-out" data-i18n="educational-level.status.option-2">
+								<option value="肄業" data-i18n="educational-level.status.option-2">
 								</option>
-								<option value="in-school" data-i18n="educational-level.status.option-3">
+								<option value="就學中" data-i18n="educational-level.status.option-3">
 								</option>
 							</select>
 							<span class="Status_Error -bottom-6 text-jardin-red"></span>
@@ -1206,11 +1209,11 @@ $(document).ready(function () {
 								<option hidden disabled selected value
 									data-i18n="language-skill.option.placeholder">
 								</option>
-								<option value="proficient" data-i18n="language-skill.option.option-1">
+								<option value="精通" data-i18n="language-skill.option.option-1">
 								</option>
-								<option value="intermediate" data-i18n="language-skill.option.option-2">
+								<option value="中等" data-i18n="language-skill.option.option-2">
 								</option>
-								<option value="understandable" data-i18n="language-skill.option.option-3">
+								<option value="略懂" data-i18n="language-skill.option.option-3">
 								</option>
 							</select>
 							<span class="Listen_Error -bottom-6 text-jardin-red"></span>
@@ -1225,11 +1228,11 @@ $(document).ready(function () {
 								<option hidden disabled selected value
 									data-i18n="language-skill.option.placeholder">
 								</option>
-								<option value="proficient" data-i18n="language-skill.option.option-1">
+								<option value="精通" data-i18n="language-skill.option.option-1">
 								</option>
-								<option value="intermediate" data-i18n="language-skill.option.option-2">
+								<option value="中等" data-i18n="language-skill.option.option-2">
 								</option>
-								<option value="understandable" data-i18n="language-skill.option.option-3">
+								<option value="略懂" data-i18n="language-skill.option.option-3">
 								</option>
 							</select>
 							<span class="Read_Error -bottom-6 text-jardin-red"></span>
@@ -1244,11 +1247,11 @@ $(document).ready(function () {
 								<option hidden disabled selected value
 									data-i18n="language-skill.option.placeholder">
 								</option>
-								<option value="proficient" data-i18n="language-skill.option.option-1">
+								<option value="精通" data-i18n="language-skill.option.option-1">
 								</option>
-								<option value="intermediate" data-i18n="language-skill.option.option-2">
+								<option value="中等" data-i18n="language-skill.option.option-2">
 								</option>
-								<option value="understandable" data-i18n="language-skill.option.option-3">
+								<option value="略懂" data-i18n="language-skill.option.option-3">
 								</option>
 							</select>
 							<span class="Write_Error -bottom-6 text-jardin-red"></span>
@@ -1263,11 +1266,11 @@ $(document).ready(function () {
 								<option hidden disabled selected value
 									data-i18n="language-skill.option.placeholder">
 								</option>
-								<option value="proficient" data-i18n="language-skill.option.option-1">
+								<option value="精通" data-i18n="language-skill.option.option-1">
 								</option>
-								<option value="intermediate" data-i18n="language-skill.option.option-2">
+								<option value="中等" data-i18n="language-skill.option.option-2">
 								</option>
-								<option value="understandable" data-i18n="language-skill.option.option-3">
+								<option value="略懂" data-i18n="language-skill.option.option-3">
 								</option>
 							</select>
 							<span class="Speak_Error -bottom-6 text-jardin-red"></span>
