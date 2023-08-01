@@ -718,22 +718,58 @@ $(document).ready(function () {
 
 	const postApplication = async () => {
 		console.log('applicationForm', applicationForm);
-		const applicationUrl =
+		const formUrl =
 			'https://prod-10.southeastasia.logic.azure.com/workflows/bf73a6c4817c4d639f9e83cdf50915bc/triggers/manual/paths/invoke/application?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=sOVRaWpb4ZWO5VVEvsFrFpVTzDe2XXmZE63Ft9OZmuo';
+		const applicationMainUrl =
+			'https://prod-09.southeastasia.logic.azure.com/workflows/f395f01fd09948c8ad5db65e57ee50c1/triggers/manual/paths/invoke/application?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=mD9AW1HLoxfjxPqJnOj9_mNz-j-PkRpxP7B3fpSK7jg';
+		const flowLogUrl =
+			'https://prod-61.southeastasia.logic.azure.com/workflows/46e3886422274f63a9f52aff88431ffd/triggers/manual/paths/invoke/application?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=lhAFFC9CNF_UFhDyF1tB1n48HtoXZcAuU5sarR8TnWs';
 		try {
+			const Application_Main_SN = `AM-${dayjs().format('YYYYMMDDHHmmss')}`;
 			const Hire_Main_Table_SN = `HM-${dayjs().format('YYYYMMDDHHmmss')}`;
 			const Hire_Education_Form_SN = `HE-${dayjs().format('YYYYMMDDHHmmss')}`;
 			const Hire_Work_Experience_Form_SN = `HWE-${dayjs().format('YYYYMMDDHHmmss')}`;
 			const Hire_Langauge_SN = `HL-${dayjs().format('YYYYMMDDHHmmss')}`;
 			const Hire_Recommander_SN = `HR-${dayjs().format('YYYYMMDDHHmmss')}`;
+			const Flow_Log_SN = `FLS-${dayjs().format('YYYYMMDDHHmmss')}`;
+			const flowMappingTable = {
+				// 本籍 PT
+				'local-pt': {
+					Flow: 2,
+					Flow_SN: 'FW-20230723161118596',
+					Current_CheckPoint: 1,
+					Current_CheckPoint_SN: 'CP-20230724104913964',
+				},
+				// 本籍 FT
+				'local-ft': {
+					Flow: 4,
+					Flow_SN: 'FW-20230723162413887',
+					Current_CheckPoint: 7,
+					Current_CheckPoint_SN: 'CP-20230724105544536',
+				},
+				// 外籍 PT
+				'overseas-pt': {
+					Flow: 5,
+					Flow_SN: 'FW-20230723162450266',
+					Current_CheckPoint: 9,
+					Current_CheckPoint_SN: 'CP-20230724105639249',
+				},
+				// 外籍 FT
+				'overseas-ft': {
+					Flow: 3,
+					Flow_SN: 'FW-20230723162355222',
+					Current_CheckPoint: 3,
+					Current_CheckPoint_SN: 'CP-20230724105355240',
+				},
+			};
 
-			let body = {
+			let formBody = {
 				// System
 				Hire_Main_Table_SN,
-				Form_List_SN: '',
-				Flow_SN: '',
-				Form_List: '',
-				Form: '',
+				Form_List: 1,
+				Form_List_SN: 'FM-20230731152831892',
+				Flow: flowMappingTable['local-pt'].Flow,
+				Flow_SN: flowMappingTable['local-pt'].Flow_SN,
 
 				// Form
 				Position: applicationForm.Position.value,
@@ -756,6 +792,7 @@ $(document).ready(function () {
 				Mailing_Address: applicationForm.Contact_Address.value,
 				Residence_Address: applicationForm.Residence_Address.value,
 				Car_License: applicationForm.Driving_License.value,
+				Working_Hour: applicationForm.Available_Time.value,
 				Other_License: applicationForm.License.value,
 				Working_Relative: applicationForm.Family_Survey.value,
 				Disabled: applicationForm.Physical_Dysfunction.value,
@@ -802,16 +839,66 @@ $(document).ready(function () {
 				// Other
 				Profile: avatarPreview?.content,
 			};
-			console.log(body);
-			// let response = fetch(applicationUrl, {
-			// 	body: JSON.stringify(body),
-			// 	headers: {
-			// 		'user-agent': 'Mozilla/4.0 MDN Example',
-			// 		'content-type': 'application/json',
-			// 	},
-			// 	method: 'POST',
-			// });
-			// console.log(response);
+			let applicationMainBody = {
+				Application_Main_SN,
+				Form_Record_SN: Hire_Main_Table_SN,
+				Form_List: 1,
+				Form_List_SN: 'FM-20230731152831892',
+				Flow: flowMappingTable['local-pt'].Flow,
+				Flow_SN: flowMappingTable['local-pt'].Flow_SN,
+				Requester: 3,
+				Requester_Name: 'Matthew Lee',
+				Requester_SN: 'U-202307181728249',
+				Requester_Mail: 'matthew.lee@sftwo.onmicrosoft.com',
+				Current_CheckPoint: flowMappingTable['local-pt'].Current_CheckPoint,
+				Current_CheckPoint_SN: flowMappingTable['local-pt'].Current_CheckPoint_SN,
+				Submitted_Datetime: dayjs(),
+			};
+			let flowLogBody = {
+				Flow_Log_SN,
+				Form_List: 1,
+				Form_List_SN: 'FM-20230731152831892',
+				Application_Main_SN,
+				Form_Record_SN: Hire_Main_Table_SN,
+				CheckPoint: flowMappingTable['local-pt'].Current_CheckPoint,
+				CheckPoint_SN: flowMappingTable['local-pt'].Current_CheckPoint_SN,
+				User: 3,
+				User_SN: 'U-202307181728249',
+				User_Mail: 'matthew.lee@sftwo.onmicrosoft.com',
+				Start_Datetime: dayjs(),
+			};
+			console.log(formBody);
+			console.log(applicationMainBody);
+			console.log(flowLogBody);
+			let formResponse = await fetch(formUrl, {
+				body: JSON.stringify(formBody),
+				headers: {
+					'user-agent': 'Mozilla/4.0 MDN Example',
+					'content-type': 'application/json',
+				},
+				method: 'POST',
+			});
+			let applicationMainResponse = await fetch(applicationMainUrl, {
+				body: JSON.stringify(applicationMainBody),
+				headers: {
+					'user-agent': 'Mozilla/4.0 MDN Example',
+					'content-type': 'application/json',
+				},
+				method: 'POST',
+			});
+			let applicationMainResponseData = await applicationMainResponse.json();
+			console.log(applicationMainResponseData);
+			let flowLogResponse = await fetch(flowLogUrl, {
+				body: JSON.stringify({
+					...flowLogBody,
+					Application_Main: applicationMainResponseData,
+				}),
+				headers: {
+					'user-agent': 'Mozilla/4.0 MDN Example',
+					'content-type': 'application/json',
+				},
+				method: 'POST',
+			});
 		} catch (error) {
 			console.log(`Error: ${error}`);
 		}
@@ -827,6 +914,8 @@ $(document).ready(function () {
 				content: e.target.result,
 			};
 			console.log(avatarPreview);
+			$('.defualt-img').addClass('w-full object-cover opacity-100');
+			$('.defualt-img').attr('src', avatarPreview.content);
 		};
 		avatarReader.onloadend = function (e) {
 			console.log(e.target.result);
@@ -854,7 +943,7 @@ $(document).ready(function () {
 		return newData;
 	};
 
-	const clearEmploymentData = (data, keyArray) => {
+	const clearChildrenData = (data, keyArray) => {
 		const newData = { ...data };
 		for (let index = 0; index < keyArray.length; index += 1) {
 			newData[keyArray[index]] = clear(newData[keyArray[index]]);
@@ -866,18 +955,47 @@ $(document).ready(function () {
 
 	const clearFormError = data => {
 		console.log('error', data);
-		const newData = clearData(_.omit(data, ['Employment']), [
-			'Name_Zh',
-			'Name_En',
-			'Birth_Date',
-			'Gender',
-			'Email',
-		]);
-		const emp = data.Employment.map(_emp =>
-			clearEmploymentData(_emp, ['From_Date', 'To_Date', 'Company', 'Title'])
+		const newData = clearData(
+			_.omit(data, ['Educational_Level', 'Job_Experience', 'Language_Skill', 'Recommender']),
+			[
+				'Position',
+				'Chinese_Name',
+				'English_Name',
+				'Birthday',
+				'Gender',
+				'Nationality',
+				'Personal_ID',
+				'Resident_Certificate_No',
+				'Resident_Certificate_Effective_Date',
+				'Work_Permit_Certificate_No',
+				'Work_Permit_Certificate_Effective_Date',
+				'Email',
+				'Mobile_Phone',
+				'Contact_Address',
+				'Residence_Address',
+				'Driving_License',
+				'Recruiting_Source',
+				'Available_Time',
+				'License',
+				'Family_Survey',
+				'Physical_Dysfunction',
+				'Disabled_Employment',
+			]
+		);
+		const edu = data.Educational_Level.map(_emp =>
+			clearChildrenData(_emp, ['Level', 'School_Name', 'Major_Subject', 'Start_Date', 'End_Date', 'Status'])
+		);
+		const job = data.Job_Experience.map(_emp =>
+			clearChildrenData(_emp, ['Position', 'Company_Name', 'Start_Date', 'End_Date'])
+		);
+		const lng = data.Language_Skill.map(_emp =>
+			clearChildrenData(_emp, ['Language', 'Listen', 'Read', 'Write', 'Speak'])
+		);
+		const rcm = data.Recommender.map(_emp =>
+			clearChildrenData(_emp, ['Name', 'Phone', 'Company_Name', 'Relationship'])
 		);
 
-		return { ...newData, Employment: emp };
+		return { ...newData, Educational_Level: edu, Job_Experience: job, Language_Skill: lng, Recommender: rcm };
 	};
 
 	// Validate Form
@@ -899,17 +1017,40 @@ $(document).ready(function () {
 
 	const examFormData = data => {
 		console.log(data);
-		const valueResult = examValue(data, ['Name_Zh', 'Name_En', 'Birth_Date', 'Gender', 'Email']);
-		const employmentResult = data.Employment.map(emp =>
-			examValue(emp, ['From_Date', 'To_Date', 'Company', 'Title'])
+		const valueResult = examValue(data, [
+			'Position',
+			'Chinese_Name',
+			'English_Name',
+			'Birthday',
+			'Gender',
+			'Nationality',
+			'Personal_ID',
+			'Resident_Certificate_No',
+			'Resident_Certificate_Effective_Date',
+			'Work_Permit_Certificate_No',
+			'Work_Permit_Certificate_Effective_Date',
+			'Email',
+			'Mobile_Phone',
+			'Contact_Address',
+			'Residence_Address',
+			'Driving_License',
+			'Recruiting_Source',
+			'Available_Time',
+			'License',
+			'Family_Survey',
+			'Physical_Dysfunction',
+			'Disabled_Employment',
+		]);
+		const eduResult = data.Educational_Level.map(edu =>
+			examValue(edu, ['Level', 'School_Name', 'Major_Subject', 'Start_Date', 'End_Date', 'Status'])
 		);
-		console.log(valueResult, employmentResult);
+		console.log(valueResult, eduResult);
 
 		return {
 			value: valueResult.value,
 			notValid: valueResult.notValid,
-			employmentValue: employmentResult.every(({ value }) => value),
-			employmentNotValid: employmentResult.map(res => [...res.notValid]),
+			eduValue: eduResult.every(({ value }) => value),
+			eduNotValid: eduResult.map(res => [...res.notValid]),
 		};
 	};
 
@@ -918,7 +1059,7 @@ $(document).ready(function () {
 		let errorStatus = false;
 		const avatar = $('#Avatar').prop('files')[0];
 
-		// // Clear Validation
+		// Clear Validation
 		// applicationForm = clearFormError(applicationForm);
 
 		// // Validate
@@ -958,9 +1099,9 @@ $(document).ready(function () {
 		// 	errorStatus = true;
 		// }
 
-		if (errorStatus) {
-			return;
-		}
+		// if (errorStatus) {
+		// 	return;
+		// }
 
 		// if (avatar) {
 		await postApplication();
